@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Справочник ТН ВЭД ЕАЭС · Группы 84 и 87</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Классификационный справочник ТН ВЭД ЕАЭС: группы 84 и 87</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div style="background:#1B4D3E;color:#C8E6C9;text-align:center;padding:.4rem;font-size:.8rem;font-weight:600;">
-  Классификационный справочник ТН ВЭД ЕАЭС · Группы 84 и 87 · Разработан в рамках <strong>дипломной работы Павленко В.А.</strong> · Владивостокский филиал РТА · 2026
-</div>
-
+<!-- ===== ШАПКА ===== -->
 <header class="site-header">
   <div class="container header-inner">
     <div class="logo">
-      <span class="logo-icon">⚙️</span>
+      <span class="logo-icon">⚙</span>
       <div>
         <div class="logo-title">Справочник ТН ВЭД ЕАЭС</div>
         <div class="logo-sub">Группы 84 и 87 · Таможенная классификация</div>
       </div>
     </div>
+    <button class="burger" id="burger" aria-label="Меню">&#9776;</button>
     <nav class="main-nav" id="mainNav">
       <ul>
-        <li><a href="#home" class="nav-link">Главная</a></li>
-        <li><a href="#features" class="nav-link">Признаки</a></li>
-        <li><a href="#algorithm" class="nav-link">Алгоритм</a></li>
-        <li><a href="#npa-table" class="nav-link">Нормативная база</a></li>
-        <li><a href="#cases" class="nav-link">Судебная практика</a></li>
-        <li><a href="#npa" class="nav-link">НПА</a></li>
-        <li><a href="#codes" class="nav-link">Коды ТН ВЭД</a></li>
+        <li><a href="#home"        class="nav-link active">Главная</a></li>
+        <li><a href="#identifiers" class="nav-link">Признаки</a></li>
+        <li><a href="#algorithm"   class="nav-link">Алгоритм</a></li>
+        <li><a href="#npa-table"   class="nav-link">Нормативная база</a></li>
+        <li><a href="#cases"       class="nav-link">Судебная практика</a></li>
+        <li><a href="#npa"         class="nav-link">НПА</a></li>
+        <li><a href="#codes"       class="nav-link">Коды ТН ВЭД</a></li>
       </ul>
     </nav>
-    <button class="burger" id="burger" aria-label="Меню">☰</button>
   </div>
 </header>
 
-<section class="hero" id="home">
+<!-- ===== HERO ===== -->
+<section id="home" class="hero">
   <div class="container">
-    <div class="hero-badge">ТАМОЖЕННЫЙ СПРАВОЧНИК</div>
-    <h1 class="hero-title">Разграничение товаров<br>групп 84 и 87 ТН ВЭД ЕАЭС</h1>
+    <div class="hero-badge">Таможенный справочник</div>
+    <h1 class="hero-title">Разграничение товаров<br>групп&nbsp;84 и&nbsp;87 ТН&nbsp;ВЭД&nbsp;ЕАЭС</h1>
     <p class="hero-desc">Практический инструмент для таможенных специалистов, декларантов и экспертов. Помогает правильно идентифицировать подвижные машины (группа 84) и транспортные средства (группа 87) при таможенном декларировании.</p>
     <div class="hero-cards">
       <div class="hero-card">
-        <div class="hero-card-icon">🏗️</div>
+        <div class="hero-card-icon">🏗</div>
         <div class="hero-card-label">Группа 84</div>
         <div class="hero-card-text">Машины и механические устройства (экскаваторы, погрузчики, горные машины, бетоносмесительные установки)</div>
       </div>
@@ -55,20 +53,25 @@
     </div>
     <div class="hero-problem">
       <div class="hero-problem-title">⚠ Проблема разграничения</div>
-      <p>Самоходная спецтехника одновременно имеет признаки обеих групп. Ошибочная классификация влечёт доначисление таможенных платежей (разница ставок — до 15%) и административную ответственность по ч. 2 ст. 16.2 КоАП РФ.</p>
+      <p>Самоходная спецтехника (горные машины, бетоносмесители на шасси, автокраны) одновременно имеет признаки обеих групп. Ошибочная классификация влечёт доначисление таможенных платежей (разница ставок — до 15%) и административную ответственность по ч. 2 ст. 16.2 КоАП РФ.</p>
     </div>
     <div class="hero-nav-buttons">
-      <a href="#features" class="btn btn-primary">Сравнительная таблица</a>
-      <a href="#algorithm" class="btn btn-secondary">Алгоритм классификации</a>
+      <a href="#identifiers" class="btn btn-primary">Сравнительная таблица</a>
+      <a href="#algorithm"   class="btn btn-secondary">Алгоритм классификации</a>
     </div>
   </div>
 </section>
 
-<section class="section" id="features">
+<!-- ===== ИДЕНТИФИКАЦИОННЫЕ ПРИЗНАКИ ===== -->
+<section id="identifiers" class="section section-alt">
   <div class="container">
     <div class="section-header">
       <h2>Идентификационные признаки</h2>
-      <p class="section-desc">Сравнительная характеристика ключевых признаков, разграничивающих группы 84 и 87 ТН ВЭД ЕАЭС.</p>
+      <p class="section-desc">Сравнительная характеристика ключевых признаков, разграничивающих группы 84 и 87 ТН ВЭД ЕАЭС. Основа — примечание 2 к разделу XVI, примечание 3б ТН ВЭД, ТР ТС 010/2011, ТР ТС 018/2011.</p>
+    </div>
+    <div class="legend-row">
+      <span class="legend-item legend-84">● Группа 84</span>
+      <span class="legend-item legend-87">● Группа 87</span>
     </div>
     <div class="table-wrapper">
       <table class="compare-table">
@@ -81,657 +84,506 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="sign-cell"><span class="sign-num">1</span>Основная функция</td><td class="cell-84">Технологические операции: копание, дробление, смешивание, подъём грузов, бурение, зарядка ВВ</td><td class="cell-87">Перевозка грузов или людей по дорогам общего пользования</td><td class="key-cell">Если перевозка вспомогательная, а основная — производственная → группа 84 (ОПИ 3б)</td></tr>
-          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">2</span>Регуляторный документ</td><td class="cell-84">ТР ТС 010/2011 «О безопасности машин и оборудования»</td><td class="cell-87">ТР ТС 018/2011 «О безопасности колёсных транспортных средств»</td><td class="key-cell">Сертификат ТР ТС 010 = признак гр. 84; ОТТС по ТР ТС 018 = признак гр. 87</td></tr>
-          <tr><td class="sign-cell"><span class="sign-num">3</span>Скорость передвижения</td><td class="cell-84">До 30–40 км/ч; передвижение — технологическая необходимость</td><td class="cell-87">Более 40–50 км/ч; транспортный режим — основной режим эксплуатации</td><td class="key-cell">Косвенный признак, учитывается в совокупности с другими</td></tr>
-          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">4</span>Регистрация</td><td class="cell-84">Регистрируется в Гостехнадзоре; оформляется ПСМ</td><td class="cell-87">Регистрируется в ГИБДД (МВД); оформляется ПТС</td><td class="key-cell">ПСМ → гр. 84; ПТС → гр. 87. Определяющий административный критерий</td></tr>
-          <tr><td class="sign-cell"><span class="sign-num">5</span>Конструкция шасси</td><td class="cell-84">Специализированное нестандартное шасси, неотъемлемо связанное с рабочим органом</td><td class="cell-87">Унифицированное дорожное шасси (MAN, Scania, КАМАЗ); соответствует ГОСТ 22827-85</td><td class="key-cell">Стандартное дорожное шасси + надстройка = признак гр. 87 (дела AIMIX, YUGONG)</td></tr>
-          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">6</span>Кузов / платформа</td><td class="cell-84">Отсутствует стандартный грузовой кузов; рабочий орган конструктивно неотделим</td><td class="cell-87">Наличие кузова, платформы или иного стандартного грузового пространства</td><td class="key-cell">Съёмная надстройка на стандартном шасси → признак гр. 87 (код 8705)</td></tr>
-          <tr><td class="sign-cell"><span class="sign-num">7</span>Примечание ТН ВЭД</td><td class="cell-84">Примечание 2 к разделу XVI: машина с несколькими функциями → основная функция</td><td class="cell-87">Примечание 3б ТН ВЭД: ТС со спецоборудованием → код 8705</td><td class="key-cell">При конкуренции разделов XVI и XVII приоритет определяется ОПИ 1, 3а, 3б</td></tr>
-          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">8</span>Типовые товары</td><td class="cell-84">Экскаваторы (8429), горные машины (8430), бетоносмесители стационарные (8474), погрузчики (8427)</td><td class="cell-87">Автокраны (8705), автобетоносмесители (8705), самосвалы (8704), автобусы (8702)</td><td class="key-cell">Автобетоносмеситель на дорожном шасси = 8705; бетонный завод на спецшасси = 8474</td></tr>
-          <tr><td class="sign-cell"><span class="sign-num">9</span>Ставка пошлины</td><td class="cell-84 rate-low">0% (большинство позиций: 8429, 8430, 8474, 8427)</td><td class="cell-87 rate-high">15% (8705, 8704); 5–25% (прочие позиции 87)</td><td class="key-cell">Разница ставок — экономический мотив неверной классификации</td></tr>
-          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">10</span>Документы</td><td class="cell-84">Сертификат ТР ТС 010/2011, ПСМ, техописание производителя, акт экспертизы</td><td class="cell-87">ОТТС, ПТС, сертификат ТР ТС 018/2011, свидетельство о безопасности конструкции</td><td class="key-cell">Противоречие между документами — основание для таможенной экспертизы (ст. 389 ТК ЕАЭС)</td></tr>
-          <tr><td class="sign-cell"><span class="sign-num">11</span>ОТТС</td><td class="cell-84">Не предусмотрено. Применяется сертификат или декларация по ТР ТС 010/2011</td><td class="cell-87">Обязательно по ТР ТС 018/2011. Выдаётся органом по сертификации</td><td class="key-cell">Наличие ОТТС — безусловный признак гр. 87; отсутствие ОТТС + сертификат ТР ТС 010 — признак гр. 84</td></tr>
-          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">12</span>VIN-номер<small>ГОСТ 34485-2018</small></td><td class="cell-84">Как правило отсутствует. Машины до 25 км/ч освобождены от VIN</td><td class="cell-87">Обязателен для всех колёсных ТС по ТР ТС 018/2011 и ГОСТ 34485-2018</td><td class="key-cell">Наличие VIN = признак гр. 87</td></tr>
-          <tr><td class="sign-cell"><span class="sign-num">13</span>ROPS/FOPS<small>ISO 3471/3449</small></td><td class="cell-84">Обязательны для подземной и горнодобывающей техники по ТР ТС 010/2011</td><td class="cell-87">Не предусмотрены для гр. 87</td><td class="key-cell">Сертифицированная конструкция ROPS/FOPS — признак горной машины гр. 84</td></tr>
-          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">14</span>Применение ОПИ</td><td class="cell-84">ОПИ 1, ОПИ 3б. Примечание 2 к разделу XVI</td><td class="cell-87">ОПИ 1, ОПИ 3. Примечание 3б ТН ВЭД</td><td class="key-cell">При конкуренции: последовательно ОПИ 1 → 3а → 3б → 6</td></tr>
+          <tr>
+            <td class="sign-cell"><span class="sign-num">1</span>Основная функция</td>
+            <td class="cell-84">Технологические операции: копание, дробление, смешивание, подъём грузов, бурение, зарядка ВВ</td>
+            <td class="cell-87">Перевозка грузов или людей по дорогам общего пользования</td>
+            <td class="key-cell">Если перевозка вспомогательная, а основная — производственная → группа 84 (ОПИ 3б)</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="sign-cell"><span class="sign-num">2</span>Регуляторный документ</td>
+            <td class="cell-84">ТР ТС 010/2011 «О безопасности машин и оборудования»</td>
+            <td class="cell-87">ТР ТС 018/2011 «О безопасности колёсных транспортных средств»</td>
+            <td class="key-cell">Сертификат ТР ТС 010 = признак гр. 84; ОТТС по ТР ТС 018 = признак гр. 87</td>
+          </tr>
+          <tr>
+            <td class="sign-cell"><span class="sign-num">3</span>Скорость передвижения</td>
+            <td class="cell-84">До 30–40 км/ч; передвижение — технологическая необходимость</td>
+            <td class="cell-87">Более 40–50 км/ч; транспортный режим — основной режим эксплуатации</td>
+            <td class="key-cell">Косвенный признак, учитывается в совокупности с другими</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="sign-cell"><span class="sign-num">4</span>Регистрация</td>
+            <td class="cell-84">Регистрируется в Гостехнадзоре; оформляется ПСМ (паспорт самоходной машины)</td>
+            <td class="cell-87">Регистрируется в ГИБДД (МВД); оформляется ПТС (паспорт транспортного средства)</td>
+            <td class="key-cell">ПСМ → гр. 84; ПТС → гр. 87. Определяющий административный критерий</td>
+          </tr>
+          <tr>
+            <td class="sign-cell"><span class="sign-num">5</span>Конструкция шасси</td>
+            <td class="cell-84">Специализированное нестандартное шасси, неотъемлемо связанное с рабочим органом; возможно гусеничное</td>
+            <td class="cell-87">Унифицированное дорожное шасси (MAN, Scania, КАМАЗ); соответствует ГОСТ 22827-85</td>
+            <td class="key-cell">Стандартное дорожное шасси + надстройка = признак гр. 87 (дела AIMIX, YUGONG)</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="sign-cell"><span class="sign-num">6</span>Кузов / платформа</td>
+            <td class="cell-84">Отсутствует стандартный грузовой кузов; рабочий орган конструктивно неотделим</td>
+            <td class="cell-87">Наличие кузова, платформы или иного стандартного грузового пространства</td>
+            <td class="key-cell">Съёмная надстройка на стандартном шасси → признак гр. 87 (код 8705)</td>
+          </tr>
+          <tr>
+            <td class="sign-cell"><span class="sign-num">7</span>Примечание ТН ВЭД</td>
+            <td class="cell-84">Примечание 2 к разделу XVI: машина с несколькими функциями → основная функция</td>
+            <td class="cell-87">Примечание 3б ТН ВЭД: ТС со спецоборудованием → код 8705</td>
+            <td class="key-cell">При конкуренции разделов XVI и XVII приоритет определяется ОПИ 1, 3а, 3б</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="sign-cell"><span class="sign-num">8</span>Типовые товары</td>
+            <td class="cell-84">Экскаваторы (8429), горные машины (8430), бетоносмесители стационарные (8474), погрузчики (8427)</td>
+            <td class="cell-87">Автокраны (8705), автобетоносмесители (8705), самосвалы (8704), автобусы (8702)</td>
+            <td class="key-cell">Автобетоносмеситель на дорожном шасси = 8705; бетонный завод на спецшасси = 8474</td>
+          </tr>
+          <tr>
+            <td class="sign-cell"><span class="sign-num">9</span>Ставка пошлины</td>
+            <td class="cell-84 rate-low">0% (большинство позиций: 8429, 8430, 8474, 8427)</td>
+            <td class="cell-87 rate-high">15% (8705, 8704); 5–25% (прочие позиции 87)</td>
+            <td class="key-cell">Разница ставок — экономический мотив неверной классификации</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="sign-cell"><span class="sign-num">10</span>Документы</td>
+            <td class="cell-84">Сертификат ТР ТС 010/2011, ПСМ, техописание производителя, акт экспертизы</td>
+            <td class="cell-87">ОТТС, ПТС, сертификат ТР ТС 018/2011, свидетельство о безопасности конструкции</td>
+            <td class="key-cell">Противоречие между документами — основание для таможенной экспертизы (ст. 389 ТК ЕАЭС)</td>
+          </tr>
+          <tr>
+            <td class="sign-cell"><span class="sign-num">11</span>ОТТС</td>
+            <td class="cell-84">Не предусмотрено. Применяется сертификат или декларация по ТР ТС 010/2011</td>
+            <td class="cell-87">Обязательно по ТР ТС 018/2011. Выдаётся органом по сертификации</td>
+            <td class="key-cell">Наличие ОТТС — безусловный признак гр. 87; отсутствие ОТТС + сертификат ТР ТС 010 — признак гр. 84</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="sign-cell"><span class="sign-num">12</span>VIN-номер<br><small>(ГОСТ 34485-2018)</small></td>
+            <td class="cell-84">Как правило отсутствует. Машины до 25 км/ч освобождены от присвоения VIN по ТР ТС 018/2011</td>
+            <td class="cell-87">Обязателен для всех колёсных ТС по ТР ТС 018/2011 и ГОСТ 34485-2018</td>
+            <td class="key-cell">Наличие VIN = признак гр. 87. Отсутствие VIN при скорости &gt;25 км/ч — основание для проверки</td>
+          </tr>
+          <tr>
+            <td class="sign-cell"><span class="sign-num">13</span>ROPS / FOPS<br><small>(ISO 3471 / ISO 3449)</small></td>
+            <td class="cell-84">Обязательны для подземной и горнодобывающей техники по ТР ТС 010/2011</td>
+            <td class="cell-87">Не предусмотрены. Стандарты ROPS/FOPS на гр. 87 не распространяются</td>
+            <td class="key-cell">Сертифицированная конструкция ROPS/FOPS — признак гр. 84</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="sign-cell"><span class="sign-num">14</span>Применимые ОПИ</td>
+            <td class="cell-84">ОПИ 1 (текст позиции), ОПИ 3б (основная функция). Примечание 2 к разделу XVI</td>
+            <td class="cell-87">ОПИ 1, 3б (примечание 3б ТН ВЭД). Примечание 3б к разделу XVII</td>
+            <td class="key-cell">ОПИ 1 → ОПИ 3а → ОПИ 3б → ОПИ 6. Последовательность обязательна</td>
+          </tr>
         </tbody>
       </table>
+    </div>
+    <div class="info-block">
+      <div class="info-icon">ℹ</div>
+      <div>Источники: примечание 2 к разделу XVI ТН ВЭД ЕАЭС; примечание 3б ТН ВЭД; ОПИ 1, 3а, 3б, 6; рекомендация ЕЭК от 07.11.2017 № 21; письмо ФТС № 06-82/09332 от 19.02.2018; ТР ТС 010/2011 (решение КТС № 823); ТР ТС 018/2011 (решение КТС № 877).</div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt" id="algorithm">
+<!-- ===== АЛГОРИТМ КЛАССИФИКАЦИИ ===== -->
+<section id="algorithm" class="section">
   <div class="container">
     <div class="section-header">
       <h2>Алгоритм классификации</h2>
-      <p class="section-desc">Последовательно отвечайте на вопросы — алгоритм определит вероятную группу ТН ВЭД ЕАЭС.</p>
+      <p class="section-desc">Пошаговый инструмент для определения группы товара. Отвечайте на вопросы последовательно.</p>
     </div>
-    <div class="algo-shell" id="algoShell">
+    <div class="algo-shell">
       <div class="algo-progress-wrap">
         <div class="algo-progress-header">
           <span class="algo-progress-label" id="algoProgressLabel">Шаг 1 из 6</span>
-          <span class="algo-progress-pct" id="algoProgressPct">17%</span>
+          <span class="algo-progress-pct"   id="algoProgressPct">17%</span>
         </div>
-        <div class="algo-progress-bar"><div class="algo-progress-fill" id="algoProgressFill" style="width:17%"></div></div>
+        <div class="algo-progress-bar">
+          <div class="algo-progress-fill" id="algoProgressFill" style="width:17%"></div>
+        </div>
         <div class="algo-breadcrumbs" id="algoBreadcrumbs"></div>
       </div>
       <div class="algo-steps-wrap" id="algoStepsWrap">
 
-        <div id="algoStep1" class="algo-step2 active">
-          <div class="step2-num">Шаг 1 из 6</div>
-          <div class="step2-question">Товар установлен на стандартном дорожном шасси (MAN, Scania, КАМАЗ или аналог)?</div>
-          <div class="step2-hint">💡 Признаки: ПТС, VIN, ОТТС, регистрация в ГИБДД, шасси допущено к движению по дорогам общего пользования.</div>
+        <div class="algo-step2 active" id="algoStep1" data-step="1">
+          <div class="step2-num">Шаг 1</div>
+          <div class="step2-question">Имеется ли на товар <strong>ОТТС (одобрение типа ТС)</strong> по ТР ТС 018/2011?</div>
+          <div class="step2-hint">ОТТС — обязательный документ для колёсных транспортных средств гр. 87. Его наличие практически однозначно указывает на гр. 87.</div>
           <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoGo(2)">✓ Да — стандартное дорожное шасси</button>
-            <button class="step2-btn btn-step-no" onclick="algoGo(3)">✗ Нет — специализированное шасси</button>
+            <button class="step2-btn btn-step-yes" onclick="algoGo(2)">✓ Да, есть ОТТС</button>
+            <button class="step2-btn btn-step-no"  onclick="algoGo(3)">✗ Нет ОТТС</button>
           </div>
         </div>
 
-        <div id="algoStep2" class="algo-step2">
-          <div class="step2-num">Шаг 2 из 6</div>
-          <div class="step2-question">На товар оформлено Одобрение типа ТС (ОТТС) по ТР ТС 018/2011?</div>
-          <div class="step2-hint">💡 ОТТС — документ соответствия колёсного ТС требованиям ТР ТС 018/2011. Наличие ОТТС — определяющий признак группы 87.</div>
+        <div class="algo-step2" id="algoStep2" data-step="2">
+          <div class="step2-num">Шаг 2</div>
+          <div class="step2-question">Товар зарегистрирован в <strong>ГИБДД</strong> и имеет <strong>ПТС</strong>?</div>
+          <div class="step2-hint">Регистрация в ГИБДД и ПТС — административные признаки транспортного средства гр. 87. Регистрация в Гостехнадзоре и ПСМ — признак гр. 84.</div>
           <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoResult('g87_8704_8705')">✓ Да — есть ОТТС по ТР ТС 018/2011</button>
-            <button class="step2-btn btn-step-no" onclick="algoGo(3)">✗ Нет — ОТТС отсутствует</button>
+            <button class="step2-btn btn-step-yes" onclick="algoResult('g87_8704_8705')">✓ Да, ГИБДД + ПТС</button>
+            <button class="step2-btn btn-step-no"  onclick="algoGo(3)">✗ Нет, Гостехнадзор / ПСМ</button>
           </div>
         </div>
 
-        <div id="algoStep3" class="algo-step2">
-          <div class="step2-num">Шаг 3 из 6</div>
-          <div class="step2-question">Товар предназначен исключительно для подземных горных выработок или шахт?</div>
-          <div class="step2-hint">💡 Признаки: конструкция не допускает выезда на дороги общего пользования, наличие ROPS/FOPS (ISO 3471/3449), сертификат ТР ТС 010/2011 для горных машин.</div>
+        <div class="algo-step2" id="algoStep3" data-step="3">
+          <div class="step2-num">Шаг 3</div>
+          <div class="step2-question">Имеется ли сертификат соответствия по <strong>ТР ТС 010/2011</strong> (машины и оборудование)?</div>
+          <div class="step2-hint">Сертификат по ТР ТС 010/2011 подтверждает принадлежность к машинам гр. 84. Горные машины (Normet, Himec, Charmec) проходят именно эту сертификацию.</div>
           <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoGo(4)">✓ Да — исключительно подземное / горное</button>
-            <button class="step2-btn btn-step-no" onclick="algoGo(5)">✗ Нет — наземное или смешанное применение</button>
+            <button class="step2-btn btn-step-yes" onclick="algoGo(4)">✓ Да, есть сертификат ТР ТС 010</button>
+            <button class="step2-btn btn-step-no"  onclick="algoGo(5)">✗ Нет</button>
           </div>
         </div>
 
-        <div id="algoStep4" class="algo-step2">
-          <div class="step2-num">Шаг 4 из 6</div>
-          <div class="step2-question">На товар оформлен сертификат или декларация соответствия ТР ТС 010/2011?</div>
-          <div class="step2-hint">💡 Наличие сертификата по ТР ТС 010/2011 — ключевой аргумент в пользу гр. 84 (прецедент: дело Normet Utilift, 2020).</div>
+        <div class="algo-step2" id="algoStep4" data-step="4">
+          <div class="step2-num">Шаг 4</div>
+          <div class="step2-question">Основная функция товара — <strong>горнопроходческие или тоннельные работы</strong>?</div>
+          <div class="step2-hint">Примеры: Normet Utilift, Himec, Charmec → код 8430 50 000 3, гр. 84, ставка 0%.</div>
           <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoResult('g84_8430')">✓ Да — есть сертификат ТР ТС 010/2011</button>
-            <button class="step2-btn btn-step-no" onclick="algoGo(5)">✗ Нет — сертификат отсутствует</button>
+            <button class="step2-btn btn-step-yes" onclick="algoResult('g84_8430')">✓ Да, горная / тоннельная</button>
+            <button class="step2-btn btn-step-no"  onclick="algoGo(5)">✗ Нет</button>
           </div>
         </div>
 
-        <div id="algoStep5" class="algo-step2">
-          <div class="step2-num">Шаг 5 из 6</div>
-          <div class="step2-question">Основная функция товара — технологические операции (копание, смешивание, бурение, подъём), а не перевозка?</div>
-          <div class="step2-hint">💡 ОПИ 3б: если перевозка — лишь способ доставки к месту работы, а не цель эксплуатации — это гр. 84. Если основное назначение — перевозка грузов/людей — гр. 87.</div>
+        <div class="algo-step2" id="algoStep5" data-step="5">
+          <div class="step2-num">Шаг 5</div>
+          <div class="step2-question">Основная функция — <strong>копание, бурение, дробление, погрузка, зарядка ВВ, земляные работы</strong>?</div>
+          <div class="step2-hint">ОПИ 3б: при многофункциональном назначении классификация по основной функции. Экскаваторы, погрузчики, буровые установки — признак гр. 84.</div>
           <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoGo(6)">✓ Да — основная функция технологическая</button>
-            <button class="step2-btn btn-step-no" onclick="algoResult('g87_8705_8704')">✗ Нет — основная функция транспортная</button>
+            <button class="step2-btn btn-step-yes" onclick="algoGo(6)">✓ Да, технологическая</button>
+            <button class="step2-btn btn-step-no"  onclick="algoResult('g87_8705_8704')">✗ Нет, перевозка</button>
           </div>
         </div>
 
-        <div id="algoStep6" class="algo-step2">
-          <div class="step2-num">Шаг 6 из 6</div>
-          <div class="step2-question">Рабочий орган конструктивно неотделим от шасси и не может использоваться без него?</div>
-          <div class="step2-hint">💡 Если шасси и рабочий орган — единый агрегат → гр. 84 (CARMIX 3500, дело № А53-13593/2023). Если рабочий орган — съёмная надстройка → признак гр. 87 (код 8705).</div>
+        <div class="algo-step2" id="algoStep6" data-step="6">
+          <div class="step2-num">Шаг 6</div>
+          <div class="step2-question">Товар установлен на <strong>специализированном нестандартном шасси</strong>, конструктивно единым с рабочим органом?</div>
+          <div class="step2-hint">Специальное шасси, неотделимое от рабочего органа → признак гр. 84. Унифицированное дорожное шасси MAN / Scania → признак гр. 87 (дела AIMIX, YUGONG).</div>
           <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoResult('g84_8474_8430')">✓ Да — единый неотделимый агрегат</button>
-            <button class="step2-btn btn-step-no" onclick="algoResult('dispute')">✗ Нет — съёмная надстройка (спорная зона)</button>
+            <button class="step2-btn btn-step-yes" onclick="algoResult('g84_8474_8430')">✓ Да, спецшасси</button>
+            <button class="step2-btn btn-step-no"  onclick="algoResult('dispute')">✗ Нет, стандартное шасси</button>
           </div>
         </div>
 
-        <div id="algoResultBlock" style="display:none;">
+        <div class="algo-step2 algo-result2" id="algoResultBlock" style="display:none">
           <div id="algoResultContent"></div>
-          <button class="step2-restart" onclick="algoRestart()">↺ Начать заново</button>
+          <button class="step2-restart" onclick="algoReset2()">↺ Начать заново</button>
         </div>
 
       </div>
     </div>
-    <div class="info-block" style="margin-top:1.25rem;">
-      <span class="info-icon">⚖️</span>
-      <span>Алгоритм построен на основе ОПИ 1, 3а, 3б ТН ВЭД ЕАЭС, примечания 2 к разделу XVI, ТР ТС 010/2011, ТР ТС 018/2011 и судебной практики 2019–2025 гг. Результат носит справочный характер.</span>
+    <div class="info-block" style="margin-top:2rem">
+      <div class="info-icon">📋</div>
+      <div>Алгоритм основан на ОПИ 1, 3а, 3б, примечании 2 к разделу XVI, ТР ТС 010/2011 и ТР ТС 018/2011. Данные судебной практики за 2019–2025 гг. <strong>При спорных случаях рекомендуется таможенная экспертиза.</strong></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="npa-table">
+<!-- ===== НОРМАТИВНАЯ БАЗА (ТАБЛИЦА) ===== -->
+<section id="npa-table" class="section section-alt">
   <div class="container">
     <div class="section-header">
       <h2>Нормативная база</h2>
-      <p class="section-desc">Ключевые нормативно-правовые акты, регулирующие классификацию и декларирование товаров групп 84 и 87 ТН ВЭД ЕАЭС.</p>
+      <p class="section-desc">Сводная таблица нормативно-правовых актов, регулирующих классификацию товаров групп 84 и 87 ТН ВЭД ЕАЭС.</p>
     </div>
     <div class="table-wrapper">
       <table class="npa-table-full">
         <thead>
           <tr>
-            <th style="width:18%">НПА</th>
+            <th style="width:16%">НПА</th>
             <th style="width:22%">Реквизиты</th>
-            <th style="width:30%">Что регулирует</th>
-            <th>Применение в спорах 84/87</th>
+            <th style="width:30%">Предмет регулирования</th>
+            <th style="width:32%">Значение для групп 84/87</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td class="npa-name npa-col-main">ТК ЕАЭС</td><td>Договор о ЕАЭС от 29.05.2014 (ред. 11.04.2017)</td><td>Общие правила классификации и декларирования товаров</td><td>Ст. 20 — обязанность правильной классификации; ст. 84–90 — таможенный контроль</td></tr>
-          <tr class="row-alt"><td class="npa-name npa-col-opi">ТН ВЭД ЕАЭС + ОПИ</td><td>Решение Совета ЕЭК от 14.09.2021 № 80</td><td>Товарная номенклатура и основные правила интерпретации (ОПИ 1–6)</td><td>ОПИ 1 — текст позиции; ОПИ 3б — основная функция при многоцелевом назначении</td></tr>
-          <tr><td class="npa-name npa-col-tr84">ТР ТС 010/2011</td><td>Решение КТС от 18.10.2011 № 823</td><td>Безопасность машин и оборудования (группа 84)</td><td>Сертификат по данному ТР = признак гр. 84. Ключевой аргумент в деле Normet (2020)</td></tr>
-          <tr class="row-alt"><td class="npa-name npa-col-tr87">ТР ТС 018/2011</td><td>Решение КТС от 09.12.2011 № 877</td><td>Безопасность колёсных транспортных средств (группа 87)</td><td>ОТТС по данному ТР = признак гр. 87. Ключевой аргумент в делах AIMIX (2023) и YUGONG (2023)</td></tr>
-          <tr><td class="npa-name" style="border-left:4px solid #2E7D32;color:#1B4D3E">ТР ТС 031/2012</td><td>Решение Совета ЕЭК от 18.10.2012 № 89</td><td>Безопасность сельскохозяйственных тракторов</td><td>Разграничивает сельскохозяйственные машины гр. 84 от тягачей гр. 87 (8701)</td></tr>
-          <tr class="row-alt"><td class="npa-name npa-col-koap">КоАП РФ, ч. 2 ст. 16.2</td><td>ФЗ от 30.12.2001 № 195-ФЗ</td><td>Ответственность за недостоверное декларирование кода ТН ВЭД</td><td>Штраф 50–200% таможенной стоимости. YUGONG — штраф +80%; PAUS — 2 899 749 руб.</td></tr>
-          <tr><td class="npa-name npa-col-opi">Пояснения к ТН ВЭД ЕАЭС</td><td>Рекомендация Коллегии ЕЭК от 07.11.2017 № 21</td><td>Официальное толкование товарных позиций гр. 84 и 87</td><td>Ключевой документ для споров 8430 vs 8705. Суды опираются на текст пояснений</td></tr>
-          <tr class="row-alt"><td class="npa-name npa-col-koap">Решение Коллегии ЕЭК № 33</td><td>08.04.2025, вступило в силу 11.05.2025</td><td>Классификация самоходной подземной горно-шахтной машины для транспортировки ВВ</td><td>Прецедент: машина для перевозки ВВ в подземных выработках = 8704 22 920 9, а не 8430 50 000 3</td></tr>
-          <tr><td class="npa-name npa-col-tr84">Решение ЕЭК № 105</td><td>29.08.2017</td><td>Классификация бетоносмесительной машины с самозагрузкой</td><td>Прецедент: CARMIX = 8474 31 000 9 (гр. 84). Применён в деле № А53-13593/2023</td></tr>
+          <tr>
+            <td class="npa-name npa-col-main">ТК ЕАЭС</td>
+            <td>Договор о ЕАЭС от 29.05.2014 (ред. 11.04.2017)</td>
+            <td>Основа таможенного регулирования ЕАЭС</td>
+            <td>Ст. 20–23 — классификация товаров. Ст. 84–90 — таможенный контроль</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="npa-name npa-col-opi">ТН ВЭД ЕАЭС + ОПИ</td>
+            <td>Решение Совета ЕЭК от 14.09.2021 № 80</td>
+            <td>Товарная номенклатура и основные правила интерпретации (ОПИ 1–6)</td>
+            <td>ОПИ 1 — текст позиции; ОПИ 3б — основная функция при многоцелевом назначении; ОПИ 6 — субпозиции</td>
+          </tr>
+          <tr>
+            <td class="npa-name npa-col-tr84">ТР ТС 010/2011</td>
+            <td>Решение КТС от 18.10.2011 № 823</td>
+            <td>Безопасность машин и оборудования (группа 84)</td>
+            <td>Сертификат по данному ТР = признак гр. 84. Ключевой аргумент в деле Normet (2020)</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="npa-name npa-col-tr87">ТР ТС 018/2011</td>
+            <td>Решение КТС от 09.12.2011 № 877</td>
+            <td>Безопасность колёсных транспортных средств (группа 87)</td>
+            <td>ОТТС по данному ТР = признак гр. 87. Ключевой аргумент в делах AIMIX (2023) и YUGONG (2023)</td>
+          </tr>
+          <tr>
+            <td class="npa-name npa-col-tr84">ТР ТС 031/2012</td>
+            <td>Решение Совета ЕЭК от 18.10.2012 № 89</td>
+            <td>Безопасность сельскохозяйственных тракторов (часть техники гр. 84)</td>
+            <td>Разграничивает сельскохозяйственные машины гр. 84 от тягачей гр. 87 (8701)</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="npa-name npa-col-koap">КоАП РФ, ч. 2 ст. 16.2</td>
+            <td>ФЗ от 30.12.2001 № 195-ФЗ</td>
+            <td>Ответственность за недостоверное декларирование кода ТН ВЭД</td>
+            <td>Штраф 50–200% таможенной стоимости. YUGONG — штраф +80%; PAUS — 2 899 749 руб.</td>
+          </tr>
+          <tr>
+            <td class="npa-name npa-col-opi">Пояснения к ТН ВЭД ЕАЭС</td>
+            <td>Рекомендация Коллегии ЕЭК от 07.11.2017 № 21</td>
+            <td>Официальное толкование товарных позиций гр. 84 и 87</td>
+            <td>Ключевой документ для споров 8430 / 8705. Суды опираются на текст пояснений</td>
+          </tr>
+          <tr class="row-alt">
+            <td class="npa-name npa-col-koap">Решение Коллегии ЕЭК № 33</td>
+            <td>08.04.2025</td>
+            <td>Классификация PAUS UNI 50-3 LP — шахтного транспортёра породы</td>
+            <td>Прецедент: транспортёр = 8704 22 920 9 (гр. 87), а не 8430 50 000 3 (гр. 84)</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<section class="section section-alt" id="cases">
+<!-- ===== СУДЕБНАЯ ПРАКТИКА ===== -->
+<section id="cases" class="section">
   <div class="container">
     <div class="section-header">
       <h2>Судебная практика</h2>
-      <p class="section-desc">Ключевые судебные дела по спорам о классификации товаров групп 84 и 87 ТН ВЭД ЕАЭС.</p>
+      <p class="section-desc">Ключевые судебные дела по спорам о классификации товаров групп 84 и 87 ТН ВЭД ЕАЭС. Нажмите на карточку для просмотра аргументов.</p>
     </div>
     <div class="cases-filter-row">
-      <button class="case-filter-btn active" onclick="filterCases('all', this)">Все <span class="filter-count">7</span></button>
-      <button class="case-filter-btn" onclick="filterCases('win', this)">🟢 Победа декларанта <span class="filter-count">3</span></button>
-      <button class="case-filter-btn" onclick="filterCases('loss', this)">🔴 Победа таможни <span class="filter-count">4</span></button>
+      <button class="case-filter-btn active" data-filter="all"     onclick="filterCases('all',this)">Все <span class="filter-count">7</span></button>
+      <button class="case-filter-btn"        data-filter="win"     onclick="filterCases('win',this)">🟢 Победа декларанта <span class="filter-count">2</span></button>
+      <button class="case-filter-btn"        data-filter="loss"    onclick="filterCases('loss',this)">🔴 Победа таможни <span class="filter-count">5</span></button>
+      <button class="case-filter-btn"        data-filter="dispute" onclick="filterCases('dispute',this)">🟡 Спорное <span class="filter-count">0</span></button>
     </div>
 
+    <!-- Горная техника -->
     <div class="cases-category" id="cat-mountain">
       <div class="cases-cat-header">🏔 Горная и подземная техника</div>
       <div class="cases-grid">
 
-        <div class="case-card2" id="case-normet" data-result="win" onclick="toggleCase2(this)" style="cursor:pointer">
-          <img class="case2-photo" src="images/normet.jpg" alt="Normet Utilift" onerror="this.style.display='none'">
+        <div class="case-card2" data-result="win" onclick="toggleCase2(this)">
           <div class="case2-stripe stripe-win"></div>
+          <img class="case2-photo" src="https://media.sandhills.com/img.axd?id=9.011203222e+09&wid=3.000051933e+09&rwl=False&p=&ext=&w=614&h=460&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=Sq3DDPDkkz1BrSR8Id6tE1YdlNrK3Bwrzy4RAXrCvgs%3D" alt="Normet Utilift" loading="lazy">
           <div class="case2-body">
-            <div class="case2-top">
-              <span class="case2-brand">Normet Utilift / Himec</span>
-              <span class="badge-win">🟢 Победа декларанта</span>
-            </div>
+            <div class="case2-top"><span class="case2-brand">Normet Utilift / Himec</span><span class="badge-win">🟢 Победа декларанта</span></div>
             <div class="case2-meta">№ 305-20-4138 · Верховный суд РФ · 25.06.2020</div>
-            <div class="case2-goods">Шахтные машины для подземных горных выработок</div>
-            <div class="case2-codes">
-              <span class="code2-claimed">8430 50 000 3 <em>0%</em></span>
-              <span class="code2-arrow">→</span>
-              <span class="code2-customs">8705 90 800 5 <em>15%</em></span>
-            </div>
+            <div class="case2-goods">Normet Utilift MF 530, Himec MF 604, Himec MF 904, Himec LF 905</div>
+            <div class="case2-codes"><span class="code2-claimed">8430 50 000 3 <em>0%</em></span><span class="code2-arrow">→</span><span class="code2-customs">8705 90 800 5 <em>15%</em></span></div>
             <div class="case2-detail" style="display:none">
-              <p><strong>Аргумент (суд поддержал):</strong> Основная функция — подъём и транспортировка в шахте, конструкция не предназначена для дорог общего пользования. Сертификат ТР ТС 010/2011 подтверждает принадлежность к гр. 84.</p>
+              <p><strong>Аргумент (суд поддержал):</strong> Машины предназначены исключительно для подземных горных выработок, конструктивно не допускают выезда на дороги общего пользования. Сертификат ТР ТС 010/2011 подтверждает принадлежность к гр. 84.</p>
               <p><strong>Правовое основание:</strong> Примечание 2 к разделу XVI; ОПИ 1, 3б; письмо ФТС № 06-82/09332 от 19.02.2018.</p>
             </div>
-            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
+            <button class="case2-toggle">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" id="case-charmec" data-result="win" onclick="toggleCase2(this)" style="cursor:pointer">
-          <img class="case2-photo" src="images/charmec.jpg" alt="Charmec MF 504 D" onerror="this.style.display='none'">
+        <div class="case-card2" data-result="win" onclick="toggleCase2(this)">
           <div class="case2-stripe stripe-win"></div>
+          <img class="case2-photo" src="https://images.ctfassets.net/idihyv8a6g5y/7xrsfWRgsfnD12kTKiQDZs/2480966f362a9c7e3295f2f42e4d3980/Charmec_SF_404_DV_Left_Side_View.jpg" alt="Charmec MF 504 D" loading="lazy">
           <div class="case2-body">
-            <div class="case2-top">
-              <span class="case2-brand">Charmec MF 504 D</span>
-              <span class="badge-win">🟢 Победа декларанта</span>
-            </div>
+            <div class="case2-top"><span class="case2-brand">Charmec MF 504 D</span><span class="badge-win">🟢 Победа декларанта</span></div>
             <div class="case2-meta">№ А40-154710/2021 · АС г. Москвы · 2021–2022</div>
             <div class="case2-goods">Шахтная зарядная машина для взрывчатых веществ</div>
-            <div class="case2-codes">
-              <span class="code2-claimed">8430 50 000 3 <em>0%</em></span>
-              <span class="code2-arrow">→</span>
-              <span class="code2-customs">8705 90 800 5 <em>15%</em></span>
-            </div>
+            <div class="case2-codes"><span class="code2-claimed">8430 50 000 3 <em>0%</em></span><span class="code2-arrow">→</span><span class="code2-customs">8705 90 800 5 <em>15%</em></span></div>
             <div class="case2-detail" style="display:none">
-              <p><strong>Аргумент (суд поддержал):</strong> Основная функция — зарядка взрывчатыми веществами в шахте. Конструкция исключает использование на дорогах общего пользования.</p>
-              <p><strong>Правовое основание:</strong> ОПИ 1, 3б; Примечание 2 к разделу XVI ТН ВЭД ЕАЭС.</p>
+              <p><strong>Аргумент (суд поддержал):</strong> Основная функция — зарядка шпуров взрывчатыми веществами. Шасси и рабочее оборудование образуют единый агрегат (ISO 8812-2014). Соответствие ТР ТС 010/2011 подтверждено сертификатом.</p>
+              <p><strong>Правовое основание:</strong> ОПИ 3б; примечание 2 к разделу XVI.</p>
             </div>
-            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
+            <button class="case2-toggle">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" id="case-paus" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
-          <img class="case2-photo" src="images/paus.jpg" alt="PAUS UNI 50-3 LP" onerror="this.style.display='none'">
+        <div class="case-card2" data-result="loss" onclick="toggleCase2(this)">
           <div class="case2-stripe stripe-loss"></div>
+          <img class="case2-photo" src="https://avatars.mds.yandex.net/i?id=f45a71cc2da859d0878207f15d5748ac_l-4034093-images-thumbs&n=13" alt="PAUS UNI 50-3 LP" loading="lazy">
           <div class="case2-body">
-            <div class="case2-top">
-              <span class="case2-brand">PAUS UNI 50-3 LP</span>
-              <span class="badge-loss">🔴 Победа таможни</span>
-            </div>
+            <div class="case2-top"><span class="case2-brand">PAUS UNI 50-3 LP</span><span class="badge-loss">🔴 Победа таможни</span></div>
             <div class="case2-meta">№ А27-10718/2024 · АС Кемеровской обл. · Решение ЕЭК № 33 от 08.04.2025</div>
-            <div class="case2-goods">Самоходная подземная горно-шахтная машина для транспортировки взрывчатых веществ в подземных выработках</div>
-            <div class="case2-codes">
-              <span class="code2-claimed">8430 50 000 3 <em>0%</em></span>
-              <span class="code2-arrow">→</span>
-              <span class="code2-customs">8704 22 920 9 <em>15%</em></span>
-            </div>
-            <div class="case2-donachill">Доначислено: 2 899 749,32 руб.</div>
+            <div class="case2-goods">Шахтный транспортёр породы</div>
+            <div class="case2-codes"><span class="code2-claimed">8430 50 000 3 <em>0%</em></span><span class="code2-arrow">→</span><span class="code2-customs">8704 22 920 9 <em>15%</em></span></div>
+            <div class="case2-donachill">Доначислено: <strong>2 899 749,32 руб.</strong></div>
             <div class="case2-detail" style="display:none">
-              <p><strong>Аргумент таможни (поддержан ЕЭК):</strong> Основная функция — перевозка грузов (ВВ). Классифицируется по ОПИ 1 в товарной позиции 8704.</p>
-              <p><strong>Правовое основание:</strong> Решение Коллегии ЕЭК № 33 от 08.04.2025, вступило в силу 11.05.2025. ОПИ 1.</p>
+              <p><strong>Аргумент (суд поддержал):</strong> Основная функция — перевозка горной массы (транспортная). Конструкция не образует единый неразделимый агрегат с шасси.</p>
+              <p><strong>Правовое основание:</strong> ОПИ 1, 3; примечание 1 к разделу XVII; решение ЕЭК № 33 от 08.04.2025.</p>
             </div>
-            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
+            <button class="case2-toggle">Подробнее ▾</button>
           </div>
         </div>
 
       </div>
     </div>
 
+    <!-- Бетоносмесители -->
     <div class="cases-category" id="cat-concrete">
-      <div class="cases-cat-header">🏗 Бетоносмесители и спецтехника</div>
+      <div class="cases-cat-header">🏗 Бетоносмесители</div>
       <div class="cases-grid">
 
-        <div class="case-card2" id="case-aimix" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
-          <img class="case2-photo" src="images/aimix.jpg" alt="AIMIX AS-3.5" onerror="this.style.display='none'">
+        <div class="case-card2" data-result="loss" onclick="toggleCase2(this)">
           <div class="case2-stripe stripe-loss"></div>
+          <img class="case2-photo" src="https://images.satom.ru/i3/firms/28/81/81409/pic_27e9fce806cce00_1024x3000.webp.jpg" alt="AIMIX AS-3.5" loading="lazy">
           <div class="case2-body">
-            <div class="case2-top">
-              <span class="case2-brand">AIMIX AS-3.5</span>
-              <span class="badge-loss">🔴 Победа таможни</span>
-            </div>
-            <div class="case2-meta">АС Приморского края · 2023</div>
-            <div class="case2-goods">Автобетоносмеситель на дорожном шасси MAN</div>
-            <div class="case2-codes">
-              <span class="code2-claimed">8474 32 000 0 <em>0%</em></span>
-              <span class="code2-arrow">→</span>
-              <span class="code2-customs">8705 40 000 1 <em>15%</em></span>
-            </div>
+            <div class="case2-top"><span class="case2-brand">AIMIX AS-3.5</span><span class="badge-loss">🔴 Победа таможни</span></div>
+            <div class="case2-meta">№ А56-65603/2023 · АС Северо-Западного округа · 19.11.2024</div>
+            <div class="case2-goods">Самоходная бетоносмесительная установка, 3,5 т</div>
+            <div class="case2-codes"><span class="code2-claimed">8474 31 000 9 <em>0%</em></span><span class="code2-arrow">→</span><span class="code2-customs">8705 40 000 1 <em>15%</em></span></div>
             <div class="case2-detail" style="display:none">
-              <p><strong>Аргумент таможни (поддержан):</strong> Смеситель установлен на стандартное дорожное шасси MAN с ОТТС. Наличие шасси общего применения и ОТТС — определяющий признак гр. 87.</p>
-              <p><strong>Правовое основание:</strong> ТР ТС 018/2011; Примечание 3б ТН ВЭД; ОПИ 1.</p>
+              <p><strong>Аргумент (суд поддержал):</strong> Установка смонтирована на унифицированном дорожном шасси, имеет ОТТС и ПТС. Передвижение по дорогам — неотъемлемая часть эксплуатации.</p>
+              <p><strong>Правовое основание:</strong> Примечание 3б ТН ВЭД; ТР ТС 018/2011; ОПИ 1, 3б. Прецедент для дел YUGONG и QGMC.</p>
             </div>
-            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
+            <button class="case2-toggle">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" id="case-yugong" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
-          <img class="case2-photo" src="images/yugong3000.jpg" alt="YUGONG SDM4000" onerror="this.style.display='none'">
+        <div class="case-card2" data-result="loss" onclick="toggleCase2(this)">
           <div class="case2-stripe stripe-loss"></div>
+          <img class="case2-photo" src="https://avatars.mds.yandex.net/i?id=491e5920e5fee22894594592b664479b19efb1d3-4074279-images-thumbs&n=13" alt="YUGONG SDM4000" loading="lazy">
           <div class="case2-body">
-            <div class="case2-top">
-              <span class="case2-brand">YUGONG SDM3000/SDM4000</span>
-              <span class="badge-loss">🔴 Победа таможни</span>
-            </div>
-            <div class="case2-meta">АС Приморского края · 2023</div>
-            <div class="case2-goods">Автобетоносмеситель на шасси КАМАЗ</div>
-            <div class="case2-codes">
-              <span class="code2-claimed">8474 31 000 9 <em>0%</em></span>
-              <span class="code2-arrow">→</span>
-              <span class="code2-customs">8705 40 000 1 <em>15%</em></span>
-            </div>
-            <div class="case2-donachill">Доначислено: +1 096 623 руб. + штраф 80%</div>
+            <div class="case2-top"><span class="case2-brand">YUGONG SDM3000 / SDM4000</span><span class="badge-loss">🔴 Победа таможни</span></div>
+            <div class="case2-meta">№ А51-9614/2023 · АС Приморского края · 05.11.2024</div>
+            <div class="case2-goods">Самоходные бетоносмесительные установки серии SDM</div>
+            <div class="case2-codes"><span class="code2-claimed">8474 31 000 9 <em>0%</em></span><span class="code2-arrow">→</span><span class="code2-customs">8705 40 000 1 <em>15%</em></span></div>
+            <div class="case2-donachill">Доначислено: <strong>1 096 623,57 руб.</strong> + штраф 80%</div>
             <div class="case2-detail" style="display:none">
-              <p><strong>Аргумент таможни (поддержан):</strong> Шасси КАМАЗ — стандартное дорожное с ОТТС и ПТС. Барабан смесителя — съёмная надстройка.</p>
-              <p><strong>Правовое основание:</strong> ТР ТС 018/2011; ГОСТ 22827-85; Примечание 3б ТН ВЭД.</p>
+              <p><strong>Аргумент (суд поддержал):</strong> Применена аналогия с делом AIMIX. Наличие ПТС и регистрация в ГИБДД — определяющий признак гр. 87.</p>
+              <p><strong>Правовое основание:</strong> ТР ТС 018/2011; примечание 3б ТН ВЭД; принцип аналогии судебной практики.</p>
             </div>
-            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
+            <button class="case2-toggle">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" id="case-carmix" data-result="win" onclick="toggleCase2(this)" style="cursor:pointer">
-          <img class="case2-photo" src="images/carmix.jpg" alt="CARMIX 3500" onerror="this.style.display='none'">
-          <div class="case2-stripe stripe-win"></div>
+        <div class="case-card2" data-result="loss" onclick="toggleCase2(this)">
+          <div class="case2-stripe stripe-loss"></div>
+          <img class="case2-photo" src="https://baumaschinen.ru/upload/iblock/d3d/d3d58e279d7271bc69595b7c0715a243.jpg" alt="CARMIX 3500" loading="lazy">
           <div class="case2-body">
-            <div class="case2-top">
-              <span class="case2-brand">CARMIX 3500</span>
-              <span class="badge-win">🟢 Победа декларанта</span>
-            </div>
-            <div class="case2-meta">№ А53-13593/2023 · 15 ААС · 07.02.2024</div>
-            <div class="case2-goods">Самоходная бетоносмесительная машина с самозагрузкой на специализированном шасси</div>
-            <div class="case2-codes">
-              <span class="code2-claimed">8474 31 000 9 <em>0%</em></span>
-              <span class="code2-arrow">→</span>
-              <span style="font-size:.8rem;color:#16a34a;font-weight:700">✓ отстояли</span>
-            </div>
+            <div class="case2-top"><span class="case2-brand">CARMIX 3500 / 3.5 TT</span><span class="badge-loss">🔴 Победа таможни</span></div>
+            <div class="case2-meta">№ А53-13593/2023 · АС Ростовской области · 07.02.2024</div>
+            <div class="case2-goods">Самоходный бетоносмеситель с самозагрузкой</div>
+            <div class="case2-codes"><span class="code2-claimed">8474 31 000 9 <em>0%</em></span><span class="code2-arrow">→</span><span class="code2-customs">8705 40 000 1 <em>15%</em></span></div>
+            <div class="case2-donachill">Переклассифицирован в 8705 40 000 1</div>
             <div class="case2-detail" style="display:none">
-              <p><strong>Аргумент (суд поддержал):</strong> Шасси и бетоносмесительное оборудование конструктивно интегрированы в единый агрегат; шасси не может использоваться для иных целей.</p>
-              <p><strong>Апелляция:</strong> Жалоба таможни отклонена 07.02.2024 — решение от 17.11.2023 оставлено в силе.</p>
-              <p><strong>Правовое основание:</strong> ОПИ 1, 3а, 3б; Решение ЕЭК № 105 от 29.08.2017.</p>
+              <p><strong>Аргумент таможни (суд поддержал):</strong> CARMIX 3500 и CARMIX 3.5 TT зарегистрированы как транспортные средства (ПТС, VIN, ОТТС по ТР ТС 018/2011). Суд указал: мобильность — определяющая эксплуатационная характеристика, машина предназначена для передвижения по строительным площадкам с подачей бетона к месту укладки.</p>
+              <p><strong>Правовое основание:</strong> Примечание 3б ТН ВЭД; ТР ТС 018/2011 (ОТТС, VIN); ОПИ 1, 3б. Применена аналогия с делами QGMC (2021) и AIMIX (2023).</p>
             </div>
-            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
+            <button class="case2-toggle">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" id="case-qgmc" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
-          <img class="case2-photo" src="images/qgmc.jpg" alt="QGMC 3500" onerror="this.style.display='none'">
+        <div class="case-card2" data-result="loss" onclick="toggleCase2(this)">
           <div class="case2-stripe stripe-loss"></div>
+          <img class="case2-photo" src="https://gde.ru/images/img_ru/700/c6/00/c600b4fe4535efb13efbf04dba36412b.webp" alt="QGMC3000" loading="lazy">
           <div class="case2-body">
-            <div class="case2-top">
-              <span class="case2-brand">QGMC3000/3500</span>
-              <span class="badge-loss">🔴 Победа таможни</span>
-            </div>
-            <div class="case2-meta">Владивостокская таможня · 2024</div>
-            <div class="case2-goods">Автобетоносмеситель на шасси с ОТТС</div>
-            <div class="case2-codes">
-              <span class="code2-claimed">8474 31 000 9 <em>0%</em></span>
-              <span class="code2-arrow">→</span>
-              <span class="code2-customs">8705 40 000 1 <em>15%</em></span>
-            </div>
+            <div class="case2-top"><span class="case2-brand">QGMC3000 / QGMC3500</span><span class="badge-loss">🔴 Победа таможни</span></div>
+            <div class="case2-meta">№ А53-2692/2021 · АС Ростовской области · 2021</div>
+            <div class="case2-goods">Самоходные бетонные заводы на колёсном шасси</div>
+            <div class="case2-codes"><span class="code2-claimed">8474 31 000 9 <em>0%</em></span><span class="code2-arrow">→</span><span class="code2-customs">8705 40 000 1 <em>15%</em></span></div>
             <div class="case2-detail" style="display:none">
-              <p><strong>Аргумент таможни:</strong> Наличие ОТТС и стандартного дорожного шасси — определяющие признаки гр. 87.</p>
+              <p><strong>Аргумент (суд поддержал):</strong> Оборудование установлено на стандартном колёсном шасси с ПТС и ОТТС. Транспортное назначение шасси — определяющий признак гр. 87.</p>
+              <p><strong>Правовое основание:</strong> Примечание 3б ТН ВЭД; ТР ТС 018/2011; ОПИ 1. Предшествует делу AIMIX.</p>
             </div>
-            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
+            <button class="case2-toggle">Подробнее ▾</button>
           </div>
         </div>
 
       </div>
+    </div>
+
+    <div class="info-block" style="margin-top:2rem">
+      <div class="info-icon">⚖</div>
+      <div>Карточки основаны на материалах дипломной работы и открытых базах судебных решений (kad.arbitr.ru, alta.ru). <strong>Данные носят справочный характер.</strong></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="npa">
+<!-- ===== НПА (КАРТОЧКИ) ===== -->
+<section id="npa" class="section section-alt">
   <div class="container">
     <div class="section-header">
       <h2>Нормативно-правовые акты</h2>
+      <p class="section-desc">Ключевые НПА, регулирующие классификацию товаров групп 84 и 87 ТН ВЭД ЕАЭС.</p>
     </div>
     <div class="npa-grid">
-      <div class="npa-card npa-primary"><div class="npa-type">ТК ЕАЭС</div><div class="npa-title">Таможенный кодекс ЕАЭС</div><div class="npa-detail">Договор о ЕАЭС от 29.05.2014</div><div class="npa-articles">Ст. 20–23 — классификация; ст. 84–90 — контроль</div></div>
-      <div class="npa-card npa-primary"><div class="npa-type">ОПИ ТН ВЭД</div><div class="npa-title">Основные правила интерпретации</div><div class="npa-detail">Решение ЕЭК № 80 от 14.09.2021</div><div class="npa-articles">ОПИ 1, 3а, 3б, 6 — основа спорных классификаций 84/87</div></div>
+      <div class="npa-card npa-primary"><div class="npa-type">ТК ЕАЭС</div><div class="npa-title">Таможенный кодекс ЕАЭС</div><div class="npa-detail">Договор о ЕАЭС от 29.05.2014 (ред. 11.04.2017)</div><div class="npa-articles">Ст. 20–23 — классификация; ст. 84–90 — контроль</div></div>
+      <div class="npa-card npa-primary"><div class="npa-type">ОПИ ТН ВЭД</div><div class="npa-title">Основные правила интерпретации</div><div class="npa-detail">Решение ЕЭК № 80 от 14.09.2021</div><div class="npa-articles">ОПИ 1, 3а, 3б — основа спорных классификаций 84/87</div></div>
       <div class="npa-card npa-tr"><div class="npa-type">ТР ТС 010/2011</div><div class="npa-title">О безопасности машин и оборудования</div><div class="npa-detail">Решение КТС № 823 от 18.10.2011</div><div class="npa-articles">Сертификат по ТР ТС 010 = признак гр. 84</div></div>
       <div class="npa-card npa-tr"><div class="npa-type">ТР ТС 018/2011</div><div class="npa-title">О безопасности колёсных ТС</div><div class="npa-detail">Решение КТС № 877 от 09.12.2011</div><div class="npa-articles">ОТТС по ТР ТС 018 = признак гр. 87</div></div>
-      <div class="npa-card npa-gost"><div class="npa-type">ГОСТ 22827-85</div><div class="npa-title">Тягачи седельные. Технические условия</div><div class="npa-detail">М.: Стандартинформ, 2010</div><div class="npa-articles">Идентификация унифицированного дорожного шасси — признак гр. 87</div></div>
-      <div class="npa-card npa-fts"><div class="npa-type">ПИСЬМО ФТС</div><div class="npa-title">Пояснения по классификации гр. 84</div><div class="npa-detail">№ 06-82/09332 от 19.02.2018</div><div class="npa-articles">Разъяснения при конкуренции гр. 84 и 87</div></div>
-      <div class="npa-card" style="border-top:4px solid #c62828"><div class="npa-type">РЕШЕНИЕ ЕЭК № 33</div><div class="npa-title">Классификация PAUS UNI 50-3 LP</div><div class="npa-detail">08.04.2025, вступило в силу 11.05.2025</div><div class="npa-articles">Прецедент: машина для транспортировки ВВ в подземных выработках = 8704, не 8430</div></div>
-      <div class="npa-card npa-tr"><div class="npa-type">РЕШЕНИЕ ЕЭК № 105</div><div class="npa-title">Классификация бетоносмесителя с самозагрузкой</div><div class="npa-detail">29.08.2017</div><div class="npa-articles">Прецедент: CARMIX-тип = 8474 31 000 9 (гр. 84)</div></div>
+      <div class="npa-card npa-gost"><div class="npa-type">ГОСТ 22827-85</div><div class="npa-title">Тягачи седельные. Технические условия</div><div class="npa-detail">М.: Стандартинформ, 2010</div><div class="npa-articles">Идентификация унифицированного дорожного шасси → признак гр. 87</div></div>
+      <div class="npa-card npa-gost"><div class="npa-type">ISO 8812-2014</div><div class="npa-title">Землеройное оборудование. Классификация</div><div class="npa-detail">М.: Стандартинформ, 2015</div><div class="npa-articles">Применяется при таможенной экспертизе горных машин</div></div>
+      <div class="npa-card npa-fts"><div class="npa-type">Письмо ФТС</div><div class="npa-title">Пояснения по классификации гр. 84</div><div class="npa-detail">№ 06-82/09332 от 19.02.2018</div><div class="npa-articles">Разъяснения при конкуренции гр. 84 и 87</div></div>
+      <div class="npa-card npa-fts"><div class="npa-type">Решение ЕЭК № 33</div><div class="npa-title">Классификация PAUS UNI 50-3 LP</div><div class="npa-detail">08.04.2025</div><div class="npa-articles">Прецедент: шахтный транспортёр = 8704 (гр. 87), не 8430 (гр. 84)</div></div>
     </div>
   </div>
 </section>
 
-<section class="section section-alt" id="codes">
+<!-- ===== КОДЫ ТН ВЭД ===== -->
+<section id="codes" class="section">
   <div class="container">
     <div class="section-header">
       <h2>Коды ТН ВЭД: конкурирующие позиции</h2>
+      <p class="section-desc">Наиболее часто конкурирующие коды групп 84 и 87 с указанием ставок пошлин и итоговой таможенной нагрузки.</p>
     </div>
     <div class="filter-row">
-      <button class="filter-btn active" onclick="filterCodes('all', this)">Все</button>
-      <button class="filter-btn" onclick="filterCodes('84', this)">Группа 84</button>
-      <button class="filter-btn" onclick="filterCodes('87', this)">Группа 87</button>
+      <button class="filter-btn active" onclick="filterCodes('all',this)">Все</button>
+      <button class="filter-btn"        onclick="filterCodes('84',this)">Группа 84</button>
+      <button class="filter-btn"        onclick="filterCodes('87',this)">Группа 87</button>
     </div>
     <div class="table-wrapper">
       <table class="codes-table" id="codesTable">
         <thead>
-          <tr><th>Код ТН ВЭД</th><th>Наименование</th><th>Группа</th><th>Пошлина</th><th>НДС</th><th>Итого нагрузка</th><th>Типичные примеры</th></tr>
+          <tr>
+            <th>Код ТН ВЭД</th>
+            <th>Наименование</th>
+            <th>Группа</th>
+            <th>Пошлина</th>
+            <th>НДС</th>
+            <th>Итого нагрузка</th>
+            <th>Типичные примеры</th>
+          </tr>
         </thead>
         <tbody>
-          <tr data-group="84"><td class="code-cell code-84">8426 49 009 9</td><td>Кран самоходный, прочий</td><td><span class="group-badge g84">84</span></td><td class="rate-0">5%</td><td class="rate-nds">22%</td><td class="rate-total">28,1%</td><td>Самоходные краны на специальном шасси</td></tr>
-          <tr data-group="84" class="row-alt"><td class="code-cell code-84">8429 20 009 9</td><td>Грейдеры самоходные, прочие</td><td><span class="group-badge g84">84</span></td><td class="rate-0">3%</td><td class="rate-nds">22%</td><td class="rate-total">25,66%</td><td>Автогрейдеры тяжёлые и лёгкие</td></tr>
+          <tr data-group="84"><td class="code-cell code-84">8426 49 009 9</td><td>Кран самоходный, прочий</td><td><span class="group-badge g84">84</span></td><td class="rate-15">5%</td><td class="rate-nds">22%</td><td class="rate-total">28,1%</td><td>Самоходные краны на специальном шасси</td></tr>
+          <tr data-group="84"><td class="code-cell code-84">8429 20 009 9</td><td>Грейдеры самоходные, прочие</td><td><span class="group-badge g84">84</span></td><td class="rate-15">3%</td><td class="rate-nds">22%</td><td class="rate-total">25,66%</td><td>Автогрейдеры тяжёлые и лёгкие</td></tr>
           <tr data-group="84"><td class="code-cell code-84">8429 51 990 0</td><td>Экскаваторы с поворотной надстройкой 360°</td><td><span class="group-badge g84">84</span></td><td class="rate-0">0%</td><td class="rate-nds">22%</td><td class="rate-total">22,0%</td><td>Komatsu, Hitachi, Hyundai, Liebherr</td></tr>
-          <tr data-group="84" class="row-alt"><td class="code-cell code-84">8427 20 900 0</td><td>Погрузчики самоходные, прочие</td><td><span class="group-badge g84">84</span></td><td class="rate-0">0%</td><td class="rate-nds">22%</td><td class="rate-total">22,0%</td><td>Фронтальные и вилочные погрузчики</td></tr>
+          <tr data-group="84"><td class="code-cell code-84">8427 20 900 0</td><td>Погрузчики самоходные, прочие</td><td><span class="group-badge g84">84</span></td><td class="rate-0">0%</td><td class="rate-nds">22%</td><td class="rate-total">22,0%</td><td>Фронтальные и вилочные погрузчики, ричтраки</td></tr>
           <tr data-group="84"><td class="code-cell code-84">8430 50 000 3</td><td>Машины для проходки тоннелей и горных выработок</td><td><span class="group-badge g84">84</span></td><td class="rate-0">0%</td><td class="rate-nds">22%</td><td class="rate-total">22,0%</td><td>Normet Utilift MF 530, Himec MF 604, Charmec</td></tr>
-          <tr data-group="84" class="row-alt"><td class="code-cell code-84">8474 31 000 9</td><td>Машины для смешивания бетона, прочие</td><td><span class="group-badge g84">84</span></td><td class="rate-0">0%</td><td class="rate-nds">22%</td><td class="rate-total">22,0%</td><td>CARMIX 3500 (гр. 84 отстояна); YUGONG (переклассифицирован)</td></tr>
-          <tr data-group="87"><td class="code-cell code-87">8704 22 920 9</td><td>Самосвалы для внедорожного применения, прочие</td><td><span class="group-badge g87">87</span></td><td class="rate-15">15%</td><td class="rate-nds">22%</td><td class="rate-total-high">40,3%</td><td>PAUS UNI 50-3 LP (переклассифицирован из 8430)</td></tr>
-          <tr data-group="87" class="row-alt"><td class="code-cell code-87">8705 40 000 1</td><td>Автобетоносмесители</td><td><span class="group-badge g87">87</span></td><td class="rate-15">15%</td><td class="rate-nds">22%</td><td class="rate-total-high">40,3%</td><td>AIMIX AS-3.5; YUGONG SDM4000; автобетоносмесители КАМАЗ, MAN</td></tr>
-          <tr data-group="87"><td class="code-cell code-87">8705 90 800 5</td><td>Транспортные средства спецназначения, прочие</td><td><span class="group-badge g87">87</span></td><td class="rate-15">15%</td><td class="rate-nds">22%</td><td class="rate-total-high">40,3%</td><td>Normet Utilift (оспорено таможней, суд вернул в 8430)</td></tr>
-          <tr data-group="87" class="row-alt"><td class="code-cell code-87">8701 20 900 2</td><td>Тракторы седельные</td><td><span class="group-badge g87">87</span></td><td class="rate-15">5–15%</td><td class="rate-nds">22%</td><td class="rate-total">27–40%</td><td>Седельные тягачи для дорожного применения</td></tr>
+          <tr data-group="84"><td class="code-cell code-84">8474 31 000 9</td><td>Машины для смешивания бетона, прочие</td><td><span class="group-badge g84">84</span></td><td class="rate-0">0%</td><td class="rate-nds">22%</td><td class="rate-total">22,0%</td><td>Стационарные бетонные заводы; CARMIX 3500 (переклассифицирован); YUGONG (переклассифицирован)</td></tr>
+          <tr data-group="87"><td class="code-cell code-87">8704 22 920 9</td><td>Самосвалы для внедорожного применения, прочие</td><td><span class="group-badge g87">87</span></td><td class="rate-high">15%</td><td class="rate-nds">22%</td><td class="rate-total rate-total-high">40,3%</td><td>PAUS UNI 50-3 LP (переклассифицирован из 8430)</td></tr>
+          <tr data-group="87"><td class="code-cell code-87">8705 40 000 1</td><td>Автобетоносмесители</td><td><span class="group-badge g87">87</span></td><td class="rate-high">15%</td><td class="rate-nds">22%</td><td class="rate-total rate-total-high">40,3%</td><td>AIMIX AS-3.5; YUGONG SDM4000; автобетоносмесители КАМАЗ, MAN</td></tr>
+          <tr data-group="87"><td class="code-cell code-87">8705 90 800 5</td><td>Транспортные средства спецназначения, прочие</td><td><span class="group-badge g87">87</span></td><td class="rate-high">15%</td><td class="rate-nds">22%</td><td class="rate-total rate-total-high">40,3%</td><td>Normet Utilift (оспорено таможней, суд вернул в 8430)</td></tr>
+          <tr data-group="87"><td class="code-cell code-87">8701 20 900 2</td><td>Тракторы седельные</td><td><span class="group-badge g87">87</span></td><td class="rate-15">5–15%</td><td class="rate-nds">22%</td><td class="rate-total">27–40%</td><td>Седельные тягачи для дорожного применения</td></tr>
         </tbody>
       </table>
     </div>
     <div class="rates-summary">
       <div class="rate-card"><div class="rate-value rate-0-text">0%</div><div class="rate-label">Большинство позиций гр. 84 (8429, 8430, 8474, 8427)</div></div>
-      <div class="rate-card"><div class="rate-value rate-mid-text">15%</div><div class="rate-label">Спецавтомобили и самосвалы гр. 87 (8705, 8704)</div></div>
-      <div class="rate-card"><div class="rate-value rate-high-text">~40%</div><div class="rate-label">Итоговая нагрузка (пошлина + НДС) для гр. 87</div></div>
+      <div class="rate-card"><div class="rate-value rate-high-text">15%</div><div class="rate-label">Спецавтомобили и самосвалы гр. 87 (8705, 8704)</div></div>
+      <div class="rate-card"><div class="rate-value rate-mid-text">~40%</div><div class="rate-label">Итоговая нагрузка (пошлина + НДС) для гр. 87</div></div>
     </div>
   </div>
 </section>
 
+<!-- ===== ПОДВАЛ ===== -->
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div>
+    <div class="footer-info">
       <div class="footer-title">Классификационный справочник ТН ВЭД ЕАЭС</div>
       <div class="footer-sub">Группы 84 и 87 · Для таможенных специалистов</div>
-      <div class="footer-note">Справочник носит информационный характер.</div>
+      <div class="footer-note">Справочник носит информационный характер. Для официальных решений обращайтесь в таможенные органы.</div>
     </div>
     <div class="footer-refs">
       <div class="footer-ref-title">Основные источники</div>
       <ul>
         <li>ТК ЕАЭС (Договор о ЕАЭС от 29.05.2014)</li>
-        <li>ТР ТС 010/2011; ТР ТС 018/2011</li>
-        <li>Решение ЕЭК № 80 от 14.09.2021 (ТН ВЭД)</li>
-        <li>Решение Коллегии ЕЭК № 33 от 08.04.2025</li>
+        <li>ТР ТС 010/2011, ТР ТС 018/2011</li>
+        <li>Решение ЕЭК № 80 от 14.09.2021 (ОПИ)</li>
+        <li>Судебная практика АС РФ (2019–2025)</li>
       </ul>
     </div>
   </div>
-  <div class="container footer-copy">
-    Разработан в рамках дипломной работы · <strong>Павленко Валерия Андреевна</strong> · Специальность 38.05.02 «Таможенное дело» · Владивостокский филиал РТА · 2026
-  </div>
+  <div class="footer-copy">© 2025 Справочник ТН ВЭД ЕАЭС · Разработан в рамках дипломной работы ВФ РТА</div>
 </footer>
 
-
-
-<script>
-/* ===== БУРГЕР-МЕНЮ ===== */
-document.addEventListener('DOMContentLoaded', function () {
-  var burger = document.getElementById('burger');
-  var nav    = document.getElementById('mainNav');
-  if (burger && nav) {
-    burger.addEventListener('click', function () { nav.classList.toggle('open'); });
-  }
-  // Активная ссылка при скролле
-  var sections = document.querySelectorAll('section[id]');
-  var navLinks = document.querySelectorAll('.nav-link');
-  window.addEventListener('scroll', function () {
-    var pos = window.scrollY + 90;
-    sections.forEach(function (s) {
-      if (pos >= s.offsetTop && pos < s.offsetTop + s.offsetHeight) {
-        navLinks.forEach(function (l) { l.classList.remove('active'); });
-        var active = document.querySelector('.nav-link[href="#' + s.id + '"]');
-        if (active) active.classList.add('active');
-      }
-    });
-  });
-});
-
-/* ===== ФИЛЬТРАЦИЯ КОДОВ ТН ВЭД ===== */
-function filterCodes(group, btn) {
-  document.querySelectorAll('#codesTable .filter-btn, .filter-row .filter-btn').forEach(function (b) { b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  document.querySelectorAll('#codesTable tbody tr').forEach(function (row) {
-    row.style.display = (group === 'all' || row.dataset.group === group) ? '' : 'none';
-  });
-}
-
-/* ===== СУДЕБНАЯ ПРАКТИКА: карточки ===== */
-function toggleCase2(card) {
-  var detail = card.querySelector('.case2-detail');
-  var btn    = card.querySelector('.case2-toggle');
-  var isOpen = card.classList.contains('open2');
-  var grid   = card.closest('.cases-grid');
-  // Закрываем все другие
-  if (grid) {
-    grid.querySelectorAll('.case-card2.open2').forEach(function(c) {
-      if (c !== card) {
-        c.classList.remove('open2');
-        var d = c.querySelector('.case2-detail');
-        var b = c.querySelector('.case2-toggle');
-        if (d) d.style.display = 'none';
-        if (b) b.textContent  = 'Подробнее ▾';
-      }
-    });
-  }
-  // Переключаем текущую
-  if (isOpen) {
-    card.classList.remove('open2');
-    detail.style.display = 'none';
-    if (btn) btn.textContent = 'Подробнее ▾';
-  } else {
-    card.classList.add('open2');
-    detail.style.display = 'block';
-    if (btn) btn.textContent = 'Свернуть ▴';
-  }
-});
-  }
-  if (!isOpen) {
-    card.classList.add('open2');
-    detail.style.display = 'block';
-    btn.textContent = 'Свернуть ▴';
-  }
-}
-
-function filterCases(filter, btn) {
-  document.querySelectorAll('.case-filter-btn').forEach(function (b) { b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  document.querySelectorAll('.case-card2').forEach(function (card) {
-    card.classList.toggle('hidden', filter !== 'all' && card.dataset.result !== filter);
-  });
-  document.querySelectorAll('.cases-category').forEach(function (cat) {
-    cat.classList.toggle('all-hidden', cat.querySelectorAll('.case-card2:not(.hidden)').length === 0);
-  });
-}
-
-/* ===== АЛГОРИТМ КЛАССИФИКАЦИИ ===== */
-(function () {
-  var TREE = {
-    1: { yes: 2,                no: 3 },
-    2: { yes: 'g87_8704_8705', no: 3 },
-    3: { yes: 4,                no: 5 },
-    4: { yes: 'g84_8430',      no: 5 },
-    5: { yes: 6,                no: 'g87_8705_8704' },
-    6: { yes: 'g84_8474_8430', no: 'dispute' }
-  };
-  var TOTAL = 6;
-
-  var RESULTS = {
-    g87_8704_8705: {
-      cls:   'result2-g87',
-      group: '🔴 Группа 87 — Транспортное средство',
-      code:  'Вероятный код: 8704 22 920 9 / 8705 40 000 1 / 8705 90 800 5',
-      rate:  'Ставка ввозной пошлины: 15% + НДС 22% = итого ~40,3%',
-      opi:   'Применимые ОПИ: 1, 3. Примечание 3б ТН ВЭД для спецавтомобилей.',
-      cases: [{ text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#case-aimix' },
-              { text: 'Дело YUGONG SDM4000 (2023)', anchor: '#case-yugong' }]
-    },
-    g87_8705_8704: {
-      cls:   'result2-g87',
-      group: '🔴 Группа 87 — Спецавтомобиль / Самосвал',
-      code:  'Вероятный код: 8705 90 800 5 / 8704 22 920 9',
-      rate:  'Ставка ввозной пошлины: 15% + НДС 22% = итого ~40,3%',
-      opi:   'Применимые ОПИ: 1, 3. Основная функция — транспортная. Примечание 1 к разделу XVII.',
-      cases: [{ text: 'Дело PAUS UNI 50-3 LP (2024)', anchor: '#case-paus' }]
-    },
-    g84_8430: {
-      cls:   'result2-g84',
-      group: '🟢 Группа 84 — Горная / тоннельная машина',
-      code:  'Вероятный код: 8430 50 000 3',
-      rate:  'Ставка ввозной пошлины: 0% + НДС 22% = итого ~22,0%',
-      opi:   'Применимые ОПИ: 1, 3б. Основная функция — горнопроходческая. Примечание 2 к разделу XVI.',
-      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#case-normet' },
-              { text: 'Дело Charmec MF 504 D (2022)', anchor: '#case-charmec' }]
-    },
-    g84_8474_8430: {
-      cls:   'result2-g84',
-      group: '🟢 Группа 84 — Самоходная машина',
-      code:  'Вероятный код: 8474 31 000 9 / 8430 50 000 3 / 8429',
-      rate:  'Ставка ввозной пошлины: 0% + НДС 22% = итого ~22,0%',
-      opi:   'Применимые ОПИ: 1, 3б. Основная функция — технологическая. Примечание 2 к разделу XVI.',
-      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#case-normet' }]
-    },
-    dispute: {
-      cls:   'result2-dispute',
-      group: '🟡 Спорная зона — рекомендуется экспертиза',
-      code:  'Риск переклассификации: 8705 40 000 1 (пошлина 15%)',
-      rate:  'Текущая позиция: 0%. После переклассификации: ~40,3%',
-      opi:   'Применимые ОПИ: 1, 3а, 3б. Рекомендуется таможенная экспертиза (ст. 389 ТК ЕАЭС).',
-      cases: [{ text: 'Дело CARMIX 3500 (2024, спор)', anchor: '#case-carmix' },
-              { text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#case-aimix' }]
-    }
-  };
-
-  var currentStep = 1;
-  var history     = [];
-
-  function showStep(stepId) {
-    document.querySelectorAll('.algo-step2').forEach(function (el) {
-      el.classList.remove('active');
-      el.style.display = '';
-    });
-    document.getElementById('algoResultBlock').style.display = 'none';
-    var target = document.getElementById('algoStep' + stepId);
-    if (target) { void target.offsetWidth; target.style.display = 'block'; void target.offsetWidth; target.classList.add('active'); }
-    updateProgress(stepId);
-    updateBreadcrumbs();
-  }
-
-  function updateProgress(stepId) {
-    var pct = Math.round((stepId / TOTAL) * 100);
-    document.getElementById('algoProgressFill').style.width  = pct + '%';
-    document.getElementById('algoProgressPct').textContent   = pct + '%';
-    document.getElementById('algoProgressLabel').textContent = 'Шаг ' + stepId + ' из ' + TOTAL;
-  }
-
-  function updateBreadcrumbs() {
-    var bc = document.getElementById('algoBreadcrumbs');
-    if (!bc) return;
-    bc.innerHTML = history.map(function (h) {
-      var cls  = h.answer === 'yes' ? 'bc-yes' : 'bc-no';
-      var text = (h.answer === 'yes' ? '✓ ' : '✗ ') + 'Шаг ' + h.step;
-      return '<span class="breadcrumb-item ' + cls + '">' + text + '</span>';
-    }).join('');
-  }
-
-  window.algoGo = function (targetStep) {
-    var node   = TREE[currentStep];
-    var answer = (node && node.yes === targetStep) ? 'yes' : 'no';
-    history.push({ step: currentStep, answer: answer });
-    currentStep = targetStep;
-    showStep(targetStep);
-  };
-
-  window.algoResult = function (resultKey) {
-    var node   = TREE[currentStep];
-    var answer = (node && node.no === resultKey) ? 'no' : 'yes';
-    history.push({ step: currentStep, answer: answer });
-    updateBreadcrumbs();
-    document.querySelectorAll('.algo-step2').forEach(function (el) { el.classList.remove('active'); el.style.display = ''; });
-    var data      = RESULTS[resultKey] || RESULTS['dispute'];
-    var caseLinks = data.cases.map(function (c) {
-      return '<a class="result2-case-link" href="' + c.anchor + '" onclick="openCase(\'' + c.anchor.replace(\'#\',\'\') + \'\');return false;">📋 ' + c.text + '</a>';
-    }).join('');
-    document.getElementById('algoResultContent').innerHTML =
-      '<div class="result2-block ' + data.cls + '">' +
-        '<div class="result2-group">' + data.group + '</div>' +
-        '<div class="result2-code">'  + data.code  + '</div>' +
-        '<div class="result2-rate">'  + data.rate  + '</div>' +
-        '<div class="result2-opi">'   + data.opi   + '</div>' +
-        '<div class="result2-cases">' + caseLinks  + '</div>' +
-      '</div>';
-    document.getElementById('algoProgressFill').style.width  = '100%';
-    document.getElementById('algoProgressPct').textContent   = '100%';
-    document.getElementById('algoProgressLabel').textContent = 'Анализ завершён';
-    var rb = document.getElementById('algoResultBlock');
-    rb.style.display = 'block'; void rb.offsetWidth; rb.classList.add('active');
-  };
-
-  window.algoRestart = window.algoReset2 = function () {
-    currentStep = 1; history = [];
-    document.getElementById('algoProgressFill').style.width  = '17%';
-    document.getElementById('algoProgressPct').textContent   = '17%';
-    document.getElementById('algoProgressLabel').textContent = 'Шаг 1 из 6';
-    document.getElementById('algoBreadcrumbs').innerHTML     = '';
-    document.getElementById('algoResultBlock').style.display = 'none';
-    showStep(1);
-  };
-})();
-
-/* ===== ОТКРЫТИЕ КАРТОЧКИ ДЕЛА ПО ССЫЛКЕ ИЗ АЛГОРИТМА ===== */
-window.openCase = function(caseId) {
-  var card = document.getElementById(caseId);
-  if (!card) return;
-  // Скрыть все открытые карточки
-  document.querySelectorAll('.case-card2.open2').forEach(function(c) {
-    c.classList.remove('open2');
-    var d = c.querySelector('.case2-detail');
-    var b = c.querySelector('.case2-toggle');
-    if (d) d.style.display = 'none';
-    if (b) b.textContent = 'Подробнее ▾';
-  });
-  // Открыть нужную
-  card.classList.add('open2');
-  var detail = card.querySelector('.case2-detail');
-  var btn = card.querySelector('.case2-toggle');
-  if (detail) detail.style.display = 'block';
-  if (btn) btn.textContent = 'Свернуть ▴';
-  // Скроллим к карточке
-  setTimeout(function() {
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 100);
-};
-
-</script>
+<script src="script.js"></script>
 </body>
 </html>
