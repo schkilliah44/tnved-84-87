@@ -240,7 +240,7 @@
       <div class="cases-cat-header">🏔 Горная и подземная техника</div>
       <div class="cases-grid">
 
-        <div class="case-card2" data-result="win">
+        <div class="case-card2" id="case-normet" data-result="win" onclick="toggleCase2(this)" style="cursor:pointer">
           <img class="case2-photo" src="images/normet.jpg" alt="Normet Utilift" onerror="this.style.display='none'">
           <div class="case2-stripe stripe-win"></div>
           <div class="case2-body">
@@ -259,11 +259,11 @@
               <p><strong>Аргумент (суд поддержал):</strong> Основная функция — подъём и транспортировка в шахте, конструкция не предназначена для дорог общего пользования. Сертификат ТР ТС 010/2011 подтверждает принадлежность к гр. 84.</p>
               <p><strong>Правовое основание:</strong> Примечание 2 к разделу XVI; ОПИ 1, 3б; письмо ФТС № 06-82/09332 от 19.02.2018.</p>
             </div>
-            <button class="case2-toggle" onclick="toggleCase2(this.closest('.case-card2'))">Подробнее ▾</button>
+            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" data-result="win">
+        <div class="case-card2" id="case-charmec" data-result="win" onclick="toggleCase2(this)" style="cursor:pointer">
           <img class="case2-photo" src="images/charmec.jpg" alt="Charmec MF 504 D" onerror="this.style.display='none'">
           <div class="case2-stripe stripe-win"></div>
           <div class="case2-body">
@@ -282,11 +282,11 @@
               <p><strong>Аргумент (суд поддержал):</strong> Основная функция — зарядка взрывчатыми веществами в шахте. Конструкция исключает использование на дорогах общего пользования.</p>
               <p><strong>Правовое основание:</strong> ОПИ 1, 3б; Примечание 2 к разделу XVI ТН ВЭД ЕАЭС.</p>
             </div>
-            <button class="case2-toggle" onclick="toggleCase2(this.closest('.case-card2'))">Подробнее ▾</button>
+            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" data-result="loss">
+        <div class="case-card2" id="case-paus" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
           <img class="case2-photo" src="images/paus.jpg" alt="PAUS UNI 50-3 LP" onerror="this.style.display='none'">
           <div class="case2-stripe stripe-loss"></div>
           <div class="case2-body">
@@ -306,7 +306,7 @@
               <p><strong>Аргумент таможни (поддержан ЕЭК):</strong> Основная функция — перевозка грузов (ВВ). Классифицируется по ОПИ 1 в товарной позиции 8704.</p>
               <p><strong>Правовое основание:</strong> Решение Коллегии ЕЭК № 33 от 08.04.2025, вступило в силу 11.05.2025. ОПИ 1.</p>
             </div>
-            <button class="case2-toggle" onclick="toggleCase2(this.closest('.case-card2'))">Подробнее ▾</button>
+            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
           </div>
         </div>
 
@@ -317,7 +317,7 @@
       <div class="cases-cat-header">🏗 Бетоносмесители и спецтехника</div>
       <div class="cases-grid">
 
-        <div class="case-card2" data-result="loss">
+        <div class="case-card2" id="case-aimix" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
           <img class="case2-photo" src="images/aimix.jpg" alt="AIMIX AS-3.5" onerror="this.style.display='none'">
           <div class="case2-stripe stripe-loss"></div>
           <div class="case2-body">
@@ -336,11 +336,11 @@
               <p><strong>Аргумент таможни (поддержан):</strong> Смеситель установлен на стандартное дорожное шасси MAN с ОТТС. Наличие шасси общего применения и ОТТС — определяющий признак гр. 87.</p>
               <p><strong>Правовое основание:</strong> ТР ТС 018/2011; Примечание 3б ТН ВЭД; ОПИ 1.</p>
             </div>
-            <button class="case2-toggle" onclick="toggleCase2(this.closest('.case-card2'))">Подробнее ▾</button>
+            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" data-result="loss">
+        <div class="case-card2" id="case-yugong" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
           <img class="case2-photo" src="images/yugong3000.jpg" alt="YUGONG SDM4000" onerror="this.style.display='none'">
           <div class="case2-stripe stripe-loss"></div>
           <div class="case2-body">
@@ -360,11 +360,11 @@
               <p><strong>Аргумент таможни (поддержан):</strong> Шасси КАМАЗ — стандартное дорожное с ОТТС и ПТС. Барабан смесителя — съёмная надстройка.</p>
               <p><strong>Правовое основание:</strong> ТР ТС 018/2011; ГОСТ 22827-85; Примечание 3б ТН ВЭД.</p>
             </div>
-            <button class="case2-toggle" onclick="toggleCase2(this.closest('.case-card2'))">Подробнее ▾</button>
+            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" data-result="win">
+        <div class="case-card2" id="case-carmix" data-result="win" onclick="toggleCase2(this)" style="cursor:pointer">
           <img class="case2-photo" src="images/carmix.jpg" alt="CARMIX 3500" onerror="this.style.display='none'">
           <div class="case2-stripe stripe-win"></div>
           <div class="case2-body">
@@ -384,11 +384,11 @@
               <p><strong>Апелляция:</strong> Жалоба таможни отклонена 07.02.2024 — решение от 17.11.2023 оставлено в силе.</p>
               <p><strong>Правовое основание:</strong> ОПИ 1, 3а, 3б; Решение ЕЭК № 105 от 29.08.2017.</p>
             </div>
-            <button class="case2-toggle" onclick="toggleCase2(this.closest('.case-card2'))">Подробнее ▾</button>
+            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
           </div>
         </div>
 
-        <div class="case-card2" data-result="loss">
+        <div class="case-card2" id="case-qgmc" data-result="loss" onclick="toggleCase2(this)" style="cursor:pointer">
           <img class="case2-photo" src="images/qgmc.jpg" alt="QGMC 3500" onerror="this.style.display='none'">
           <div class="case2-stripe stripe-loss"></div>
           <div class="case2-body">
@@ -406,7 +406,7 @@
             <div class="case2-detail" style="display:none">
               <p><strong>Аргумент таможни:</strong> Наличие ОТТС и стандартного дорожного шасси — определяющие признаки гр. 87.</p>
             </div>
-            <button class="case2-toggle" onclick="toggleCase2(this.closest('.case-card2'))">Подробнее ▾</button>
+            <button class="case2-toggle" onclick="event.stopPropagation(); toggleCase2(this.closest(\'.case-card2\'))">Подробнее ▾</button>
           </div>
         </div>
 
