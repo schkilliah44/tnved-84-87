@@ -35,12 +35,29 @@ function toggleCase2(card) {
   var btn    = card.querySelector('.case2-toggle');
   var isOpen = card.classList.contains('open2');
   var grid   = card.closest('.cases-grid');
+  // Закрываем все другие
   if (grid) {
-    grid.querySelectorAll('.case-card2.open2').forEach(function (c) {
-      c.classList.remove('open2');
-      c.querySelector('.case2-detail').style.display = 'none';
-      c.querySelector('.case2-toggle').textContent = 'Подробнее ▾';
+    grid.querySelectorAll('.case-card2.open2').forEach(function(c) {
+      if (c !== card) {
+        c.classList.remove('open2');
+        var d = c.querySelector('.case2-detail');
+        var b = c.querySelector('.case2-toggle');
+        if (d) d.style.display = 'none';
+        if (b) b.textContent  = 'Подробнее ▾';
+      }
     });
+  }
+  // Переключаем текущую
+  if (isOpen) {
+    card.classList.remove('open2');
+    detail.style.display = 'none';
+    if (btn) btn.textContent = 'Подробнее ▾';
+  } else {
+    card.classList.add('open2');
+    detail.style.display = 'block';
+    if (btn) btn.textContent = 'Свернуть ▴';
+  }
+});
   }
   if (!isOpen) {
     card.classList.add('open2');
@@ -183,7 +200,7 @@ function filterCases(filter, btn) {
     rb.style.display = 'block'; void rb.offsetWidth; rb.classList.add('active');
   };
 
-  window.algoReset2 = function () {
+  window.algoRestart = window.algoReset2 = function () {
     currentStep = 1; history = [];
     document.getElementById('algoProgressFill').style.width  = '17%';
     document.getElementById('algoProgressPct').textContent   = '17%';
