@@ -79,7 +79,7 @@ function filterCases(filter, btn) {
       code:  'Вероятный код: 8704 22 920 9 / 8705 40 000 1 / 8705 90 800 5',
       rate:  'Ставка ввозной пошлины: 15% + НДС 22% = итого ~40,3%',
       opi:   'Применимые ОПИ: 1, 3. Примечание 3б ТН ВЭД для спецавтомобилей.',
-      cases: [{ text: 'Дело ALMIX AS-3.5 (2023)', anchor: '#cases' },
+      cases: [{ text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#cases' },
               { text: 'Дело YUGONG SDM4000 (2023)', anchor: '#cases' }]
     },
     g87_8705_8704: {
@@ -114,7 +114,7 @@ function filterCases(filter, btn) {
       rate:  'Текущая позиция: 0%. После переклассификации: ~40,3%',
       opi:   'Применимые ОПИ: 1, 3а, 3б. Рекомендуется таможенная экспертиза (ст. 389 ТК ЕАЭС).',
       cases: [{ text: 'Дело CARMIX 3500 (2024, спор)', anchor: '#cases' },
-              { text: 'Дело ALMIX AS-3.5 (2023)', anchor: '#cases' }]
+              { text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#cases' }]
     }
   };
 
