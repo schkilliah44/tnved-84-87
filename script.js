@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (burger && nav) {
     burger.addEventListener('click', function () { nav.classList.toggle('open'); });
   }
-  // Активная ссылка при скролле
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('.nav-link');
   window.addEventListener('scroll', function () {
@@ -35,29 +34,12 @@ function toggleCase2(card) {
   var btn    = card.querySelector('.case2-toggle');
   var isOpen = card.classList.contains('open2');
   var grid   = card.closest('.cases-grid');
-  // Закрываем все другие
   if (grid) {
-    grid.querySelectorAll('.case-card2.open2').forEach(function(c) {
-      if (c !== card) {
-        c.classList.remove('open2');
-        var d = c.querySelector('.case2-detail');
-        var b = c.querySelector('.case2-toggle');
-        if (d) d.style.display = 'none';
-        if (b) b.textContent  = 'Подробнее ▾';
-      }
+    grid.querySelectorAll('.case-card2.open2').forEach(function (c) {
+      c.classList.remove('open2');
+      c.querySelector('.case2-detail').style.display = 'none';
+      c.querySelector('.case2-toggle').textContent = 'Подробнее ▾';
     });
-  }
-  // Переключаем текущую
-  if (isOpen) {
-    card.classList.remove('open2');
-    detail.style.display = 'none';
-    if (btn) btn.textContent = 'Подробнее ▾';
-  } else {
-    card.classList.add('open2');
-    detail.style.display = 'block';
-    if (btn) btn.textContent = 'Свернуть ▴';
-  }
-});
   }
   if (!isOpen) {
     card.classList.add('open2');
@@ -96,8 +78,8 @@ function filterCases(filter, btn) {
       code:  'Вероятный код: 8704 22 920 9 / 8705 40 000 1 / 8705 90 800 5',
       rate:  'Ставка ввозной пошлины: 15% + НДС 22% = итого ~40,3%',
       opi:   'Применимые ОПИ: 1, 3. Примечание 3б ТН ВЭД для спецавтомобилей.',
-      cases: [{ text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#case-aimix' },
-              { text: 'Дело YUGONG SDM4000 (2023)', anchor: '#case-yugong' }]
+      cases: [{ text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#cases' },
+              { text: 'Дело YUGONG SDM4000 (2023)', anchor: '#cases' }]
     },
     g87_8705_8704: {
       cls:   'result2-g87',
@@ -105,7 +87,7 @@ function filterCases(filter, btn) {
       code:  'Вероятный код: 8705 90 800 5 / 8704 22 920 9',
       rate:  'Ставка ввозной пошлины: 15% + НДС 22% = итого ~40,3%',
       opi:   'Применимые ОПИ: 1, 3. Основная функция — транспортная. Примечание 1 к разделу XVII.',
-      cases: [{ text: 'Дело PAUS UNI 50-3 LP (2024)', anchor: '#case-paus' }]
+      cases: [{ text: 'Дело PAUS UNI 50-3 LP (2024)', anchor: '#cases' }]
     },
     g84_8430: {
       cls:   'result2-g84',
@@ -113,8 +95,8 @@ function filterCases(filter, btn) {
       code:  'Вероятный код: 8430 50 000 3',
       rate:  'Ставка ввозной пошлины: 0% + НДС 22% = итого ~22,0%',
       opi:   'Применимые ОПИ: 1, 3б. Основная функция — горнопроходческая. Примечание 2 к разделу XVI.',
-      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#case-normet' },
-              { text: 'Дело Charmec MF 504 D (2022)', anchor: '#case-charmec' }]
+      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#cases' },
+              { text: 'Дело Charmec MF 504 D (2022)', anchor: '#cases' }]
     },
     g84_8474_8430: {
       cls:   'result2-g84',
@@ -122,7 +104,7 @@ function filterCases(filter, btn) {
       code:  'Вероятный код: 8474 31 000 9 / 8430 50 000 3 / 8429',
       rate:  'Ставка ввозной пошлины: 0% + НДС 22% = итого ~22,0%',
       opi:   'Применимые ОПИ: 1, 3б. Основная функция — технологическая. Примечание 2 к разделу XVI.',
-      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#case-normet' }]
+      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#cases' }]
     },
     dispute: {
       cls:   'result2-dispute',
@@ -130,8 +112,8 @@ function filterCases(filter, btn) {
       code:  'Риск переклассификации: 8705 40 000 1 (пошлина 15%)',
       rate:  'Текущая позиция: 0%. После переклассификации: ~40,3%',
       opi:   'Применимые ОПИ: 1, 3а, 3б. Рекомендуется таможенная экспертиза (ст. 389 ТК ЕАЭС).',
-      cases: [{ text: 'Дело CARMIX 3500 (2024, спор)', anchor: '#case-carmix' },
-              { text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#case-aimix' }]
+      cases: [{ text: 'Дело CARMIX 3500 (2024, таможня победила)', anchor: '#cases' },
+              { text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#cases' }]
     }
   };
 
@@ -183,7 +165,7 @@ function filterCases(filter, btn) {
     document.querySelectorAll('.algo-step2').forEach(function (el) { el.classList.remove('active'); el.style.display = ''; });
     var data      = RESULTS[resultKey] || RESULTS['dispute'];
     var caseLinks = data.cases.map(function (c) {
-      return '<a class="result2-case-link" href="' + c.anchor + '" onclick="openCase(\'' + c.anchor.replace(\'#\',\'\') + \'\');return false;">📋 ' + c.text + '</a>';
+      return '<a class="result2-case-link" href="' + c.anchor + '">📋 ' + c.text + '</a>';
     }).join('');
     document.getElementById('algoResultContent').innerHTML =
       '<div class="result2-block ' + data.cls + '">' +
@@ -200,7 +182,7 @@ function filterCases(filter, btn) {
     rb.style.display = 'block'; void rb.offsetWidth; rb.classList.add('active');
   };
 
-  window.algoRestart = window.algoReset2 = function () {
+  window.algoReset2 = function () {
     currentStep = 1; history = [];
     document.getElementById('algoProgressFill').style.width  = '17%';
     document.getElementById('algoProgressPct').textContent   = '17%';
@@ -210,27 +192,3 @@ function filterCases(filter, btn) {
     showStep(1);
   };
 })();
-
-/* ===== ОТКРЫТИЕ КАРТОЧКИ ДЕЛА ПО ССЫЛКЕ ИЗ АЛГОРИТМА ===== */
-window.openCase = function(caseId) {
-  var card = document.getElementById(caseId);
-  if (!card) return;
-  // Скрыть все открытые карточки
-  document.querySelectorAll('.case-card2.open2').forEach(function(c) {
-    c.classList.remove('open2');
-    var d = c.querySelector('.case2-detail');
-    var b = c.querySelector('.case2-toggle');
-    if (d) d.style.display = 'none';
-    if (b) b.textContent = 'Подробнее ▾';
-  });
-  // Открыть нужную
-  card.classList.add('open2');
-  var detail = card.querySelector('.case2-detail');
-  var btn = card.querySelector('.case2-toggle');
-  if (detail) detail.style.display = 'block';
-  if (btn) btn.textContent = 'Свернуть ▴';
-  // Скроллим к карточке
-  setTimeout(function() {
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, 100);
-};
