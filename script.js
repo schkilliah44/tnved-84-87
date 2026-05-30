@@ -28,167 +28,205 @@ function filterCodes(group, btn) {
   });
 }
 
-/* ===== СУДЕБНАЯ ПРАКТИКА: карточки ===== */
-function toggleCase2(card) {
-  var detail = card.querySelector('.case2-detail');
-  var btn    = card.querySelector('.case2-toggle');
-  var isOpen = card.classList.contains('open2');
-  var grid   = card.closest('.cases-grid');
-  if (grid) {
-    grid.querySelectorAll('.case-card2.open2').forEach(function (c) {
-      c.classList.remove('open2');
-      c.querySelector('.case2-detail').style.display = 'none';
-      c.querySelector('.case2-toggle').textContent = 'Подробнее ▾';
-    });
+/* ===== МОДАЛЬНОЕ ОКНО СУДЕБНОЙ ПРАКТИКИ ===== */
+function openCaseModal(title, html) {
+  var modal = document.getElementById('caseModal');
+  if (!modal) return;
+  modal.querySelector('.case-modal-title').textContent = title;
+  modal.querySelector('.case-modal-body').innerHTML = html;
+  modal.classList.add('show');
+}
+function closeCaseModal() {
+  var modal = document.getElementById('caseModal');
+  if (modal) modal.classList.remove('show');
+}
+document.addEventListener('click', function (e) {
+  if (e.target && e.target.classList && e.target.classList.contains('case-modal-backdrop')) {
+    closeCaseModal();
   }
-  if (!isOpen) {
-    card.classList.add('open2');
-    detail.style.display = 'block';
-    btn.textContent = 'Свернуть ▴';
-  }
+});
+
+/* ===== ТРИ ЭТАПА АЛГОРИТМА ===== */
+var algo3 = {
+  p1Code: null,
+  p1Label: null,
+  p2Code: null,
+  p2Label: null,
+  currentStage: 1
+};
+
+function algo3GoStage(n) {
+  if (n === 2 && algo3.p1Code === null) { alert('Сначала завершите Проверку П1'); return; }
+  if (n === 3 && algo3.p2Code === null) { alert('Сначала завершите Проверку П2'); return; }
+
+  algo3.currentStage = n;
+  ['algoPanel1','algoPanel2','algoPanel3'].forEach(function(id, i) {
+    document.getElementById(id).style.display = (i + 1 === n) ? 'block' : 'none';
+  });
+  ['stageTab1','stageTab2','stageTab3'].forEach(function(id, i) {
+    var el = document.getElementById(id);
+    el.classList.toggle('active', i + 1 === n);
+    el.classList.toggle('done', i + 1 < n);
+  });
+  if (n === 3) algo3ShowFinal();
 }
 
-function filterCases(filter, btn) {
-  document.querySelectorAll('.case-filter-btn').forEach(function (b) { b.classList.remove('active'); });
-  if (btn) btn.classList.add('active');
-  document.querySelectorAll('.case-card2').forEach(function (card) {
-    card.classList.toggle('hidden', filter !== 'all' && card.dataset.result !== filter);
-  });
-  document.querySelectorAll('.cases-category').forEach(function (cat) {
-    cat.classList.toggle('all-hidden', cat.querySelectorAll('.case-card2:not(.hidden)').length === 0);
-  });
+function p1Go(stepId) {
+  document.querySelectorAll('#algoPanel1 .algo3-step').forEach(function(s){ s.classList.remove('active'); });
+  var el = document.getElementById(stepId);
+  if (el) { el.classList.add('active'); el.style.display = ''; }
 }
 
-/* ===== АЛГОРИТМ КЛАССИФИКАЦИИ ===== */
-(function () {
-  var TREE = {
-    1: { yes: 2,                no: 3 },
-    2: { yes: 'g87_8704_8705', no: 3 },
-    3: { yes: 4,                no: 5 },
-    4: { yes: 'g84_8430',      no: 5 },
-    5: { yes: 6,                no: 'g87_8705_8704' },
-    6: { yes: 'g84_8474_8430', no: 'dispute' }
-  };
-  var TOTAL = 6;
+function p1SetResult(code, label) {
+  algo3.p1Code = code;
+  algo3.p1Label = label;
+  document.querySelectorAll('#algoPanel1 .algo3-step').forEach(function(s){ s.classList.remove('active'); });
+  var r = document.getElementById('p1result');
+  r.style.display = 'block';
+  r.classList.add('active');
 
-  var RESULTS = {
-    g87_8704_8705: {
-      cls:   'result2-g87',
-      group: '🔴 Группа 87 — Транспортное средство',
-      code:  'Вероятный код: 8704 22 920 9 / 8705 40 000 1 / 8705 90 800 5',
-      rate:  'Ставка ввозной пошлины: 15% + НДС 22% = итого ~40,3%',
-      opi:   'Применимые ОПИ: 1, 3. Примечание 3б ТН ВЭД для спецавтомобилей.',
-      cases: [{ text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#cases' },
-              { text: 'Дело YUGONG SDM4000 (2023)', anchor: '#cases' }]
-    },
-    g87_8705_8704: {
-      cls:   'result2-g87',
-      group: '🔴 Группа 87 — Спецавтомобиль / Самосвал',
-      code:  'Вероятный код: 8705 90 800 5 / 8704 22 920 9',
-      rate:  'Ставка ввозной пошлины: 15% + НДС 22% = итого ~40,3%',
-      opi:   'Применимые ОПИ: 1, 3. Основная функция — транспортная. Примечание 1 к разделу XVII.',
-      cases: [{ text: 'Дело PAUS UNI 50-3 LP (2024)', anchor: '#cases' }]
-    },
-    g84_8430: {
-      cls:   'result2-g84',
-      group: '🟢 Группа 84 — Горная / тоннельная машина',
-      code:  'Вероятный код: 8430 50 000 3',
-      rate:  'Ставка ввозной пошлины: 0% + НДС 22% = итого ~22,0%',
-      opi:   'Применимые ОПИ: 1, 3б. Основная функция — горнопроходческая. Примечание 2 к разделу XVI.',
-      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#cases' },
-              { text: 'Дело Charmec MF 504 D (2022)', anchor: '#cases' }]
-    },
-    g84_8474_8430: {
-      cls:   'result2-g84',
-      group: '🟢 Группа 84 — Самоходная машина',
-      code:  'Вероятный код: 8474 31 000 9 / 8430 50 000 3 / 8429',
-      rate:  'Ставка ввозной пошлины: 0% + НДС 22% = итого ~22,0%',
-      opi:   'Применимые ОПИ: 1, 3б. Основная функция — технологическая. Примечание 2 к разделу XVI.',
-      cases: [{ text: 'Дело Normet Utilift (2020)', anchor: '#cases' }]
-    },
-    dispute: {
-      cls:   'result2-dispute',
-      group: '🟡 Спорная зона — рекомендуется экспертиза',
-      code:  'Риск переклассификации: 8705 40 000 1 (пошлина 15%)',
-      rate:  'Текущая позиция: 0%. После переклассификации: ~40,3%',
-      opi:   'Применимые ОПИ: 1, 3а, 3б. Рекомендуется таможенная экспертиза (ст. 389 ТК ЕАЭС).',
-      cases: [{ text: 'Дело CARMIX 3500 (2024, таможня победила)', anchor: '#cases' },
-              { text: 'Дело AIMIX AS-3.5 (2023)', anchor: '#cases' }]
-    }
-  };
+  var isUndef = (code === 'undef');
+  document.getElementById('p1resultLabel').innerHTML = isUndef
+    ? '<span class="algo3-badge badge-undef">⚠ Результат П1: НЕ ОПРЕДЕЛЁН</span>'
+    : '<span class="algo3-badge badge-gr87">✔ Результат П1: Группа 87 — код уточнён</span>';
+  document.getElementById('p1resultCode').innerHTML = isUndef
+    ? '<span class="algo3-code-note">Причина: ' + label + '</span><br><span class="algo3-code-note">→ Передать на СВЕРКУ после П2</span>'
+    : '<span class="algo3-code-val">' + label + '</span><br><span class="algo3-code-note">→ Передать на СВЕРКУ после П2</span>';
+}
 
-  var currentStep = 1;
-  var history     = [];
+function p1Reset() {
+  algo3.p1Code = null; algo3.p1Label = null;
+  document.getElementById('p1result').style.display = 'none';
+  document.querySelectorAll('#algoPanel1 .algo3-step').forEach(function(s){ s.style.display=''; s.classList.remove('active'); });
+  document.getElementById('p1s1').classList.add('active');
+  document.getElementById('stageTab1').classList.remove('done');
+}
 
-  function showStep(stepId) {
-    document.querySelectorAll('.algo-step2').forEach(function (el) {
-      el.classList.remove('active');
-      el.style.display = '';
-    });
-    document.getElementById('algoResultBlock').style.display = 'none';
-    var target = document.getElementById('algoStep' + stepId);
-    if (target) { void target.offsetWidth; target.style.display = 'block'; void target.offsetWidth; target.classList.add('active'); }
-    updateProgress(stepId);
-    updateBreadcrumbs();
+function p2Go(stepId) {
+  document.querySelectorAll('#algoPanel2 .algo3-step').forEach(function(s){ s.classList.remove('active'); });
+  var el = document.getElementById(stepId);
+  if (el) { el.classList.add('active'); el.style.display = ''; }
+}
+
+function p2SetResult(code, label) {
+  algo3.p2Code = code;
+  algo3.p2Label = label;
+  document.querySelectorAll('#algoPanel2 .algo3-step').forEach(function(s){ s.classList.remove('active'); });
+  var r = document.getElementById('p2result');
+  r.style.display = 'block';
+  r.classList.add('active');
+
+  var isUndef = (code === 'undef');
+  var is87 = ['8702','8703','8704','8705'].indexOf(code) >= 0;
+  var badgeHtml = isUndef
+    ? '<span class="algo3-badge badge-undef">⚠ Результат П2: НЕ ОПРЕДЕЛЁН</span>'
+    : is87
+      ? '<span class="algo3-badge badge-gr87">✔ Результат П2: Группа 87 — код уточнён</span>'
+      : '<span class="algo3-badge badge-gr84">✔ Результат П2: Группа 84 — код уточнён</span>';
+
+  document.getElementById('p2resultLabel').innerHTML = badgeHtml;
+  document.getElementById('p2resultCode').innerHTML = isUndef
+    ? '<span class="algo3-code-note">Причина: ' + label + '</span><br><span class="algo3-code-note">→ Передать на СВЕРКУ</span>'
+    : '<span class="algo3-code-val">' + label + '</span><br><span class="algo3-code-note">→ Передать на СВЕРКУ</span>';
+}
+
+function p2Reset() {
+  algo3.p2Code = null; algo3.p2Label = null;
+  document.getElementById('p2result').style.display = 'none';
+  document.querySelectorAll('#algoPanel2 .algo3-step').forEach(function(s){ s.style.display=''; s.classList.remove('active'); });
+  document.getElementById('p2s1').classList.add('active');
+  document.getElementById('stageTab2').classList.remove('done');
+}
+
+function algo3ShowFinal() {
+  var c1 = algo3.p1Code, c2 = algo3.p2Code;
+  var l1 = algo3.p1Label, l2 = algo3.p2Label;
+  var gr87 = ['8702','8703','8704','8705'];
+  var gr84 = ['8426','8427','8429','8430','8474','8432'];
+
+  var p1is87 = gr87.indexOf(c1) >= 0;
+  var p1is84 = gr84.indexOf(c1) >= 0;
+  var p2is87 = gr87.indexOf(c2) >= 0;
+  var p2is84 = gr84.indexOf(c2) >= 0;
+  var p1undef = (c1 === 'undef');
+  var p2undef = (c2 === 'undef');
+
+  var html = '<div class="algo3-final">';
+  html += '<div class="algo3-final-row">';
+  html += '<div class="algo3-final-box ' + (p1undef ? 'box-undef' : 'box-confirmed') + '">';
+  html += '<div class="algo3-final-box-title">Результат П1</div>';
+  html += '<div class="algo3-final-box-code">' + (p1undef ? '⚠ НЕ ОПРЕДЕЛЁН' : '✔ ' + l1) + '</div>';
+  html += '</div>';
+  html += '<div class="algo3-final-vs">⚡</div>';
+  html += '<div class="algo3-final-box ' + (p2undef ? 'box-undef' : 'box-confirmed') + '">';
+  html += '<div class="algo3-final-box-title">Результат П2</div>';
+  html += '<div class="algo3-final-box-code">' + (p2undef ? '⚠ НЕ ОПРЕДЕЛЁН' : '✔ ' + l2) + '</div>';
+  html += '</div>';
+  html += '</div>';
+
+  var verdict = '';
+
+  if (!p1undef && !p2undef && c1 === c2) {
+    verdict = '<div class="algo3-verdict verdict-ok">'
+      + '<div class="verdict-icon">✅</div>'
+      + '<div class="verdict-title">Код подтверждён — результаты совпадают</div>'
+      + '<div class="verdict-code">' + l1 + '</div>'
+      + '<div class="verdict-note">Классификационное решение принято. Декларирование может быть завершено.</div>'
+      + '</div>';
+  } else if (!p1undef && !p2undef && ((p1is87 && p2is87) || (p1is84 && p2is84))) {
+    var grp = p1is87 ? '87' : '84';
+    verdict = '<div class="algo3-verdict verdict-ok">'
+      + '<div class="verdict-icon">✅</div>'
+      + '<div class="verdict-title">Группа ' + grp + ' подтверждена — уточните субпозицию</div>'
+      + '<div class="verdict-code">' + l1 + ' <span class="verdict-sep">↔</span> ' + l2 + '</div>'
+      + '<div class="verdict-note">Оба метода указывают на гр. ' + grp + '. Для точного кода сопоставьте описание позиции с техническими характеристиками товара (ОПИ 6).</div>'
+      + '</div>';
+  } else if (!p1undef && p2undef) {
+    verdict = '<div class="algo3-verdict verdict-warn">'
+      + '<div class="verdict-icon">⚠️</div>'
+      + '<div class="verdict-title">П2 не определён — требуется уточнение</div>'
+      + '<div class="verdict-code">' + l1 + '</div>'
+      + '<div class="verdict-note">Результат П1 даёт ориентир, однако конструктивные признаки не установлены. Рекомендуется дополнительный осмотр товара или запрос документации производителя.</div>'
+      + '</div>';
+  } else if (p1undef && !p2undef) {
+    verdict = '<div class="algo3-verdict verdict-ok">'
+      + '<div class="verdict-icon">✅</div>'
+      + '<div class="verdict-title">Код определён по П2 (П1 не дал результата)</div>'
+      + '<div class="verdict-code">' + l2 + '</div>'
+      + '<div class="verdict-note">Документальная проверка не позволила установить группу. Код принят по конструктивным признакам (П2). Классификационное решение может быть принято.</div>'
+      + '</div>';
+  } else if (p1undef && p2undef) {
+    verdict = '<div class="algo3-verdict verdict-expert">'
+      + '<div class="verdict-icon">🔬</div>'
+      + '<div class="verdict-title">Оба результата не определены — экспертиза обязательна</div>'
+      + '<div class="verdict-note">Назначить таможенную экспертизу в ЭКС ЦЭКТУ (ст. 389 ТК ЕАЭС). По заключению эксперта будут установлены фактические признаки товара.</div>'
+      + '</div>';
+  } else {
+    verdict = '<div class="algo3-verdict verdict-expert">'
+      + '<div class="verdict-icon">❌</div>'
+      + '<div class="verdict-title">Расхождение результатов — назначить экспертизу ЭКС ЦЭКТУ</div>'
+      + '<div class="verdict-codes-pair">'
+      + '<div class="vcp-box vcp-p1"><span class="vcp-label">П1 даёт:</span><span class="vcp-code">' + l1 + '</span></div>'
+      + '<div class="vcp-arrow">≠</div>'
+      + '<div class="vcp-box vcp-p2"><span class="vcp-label">П2 даёт:</span><span class="vcp-code">' + l2 + '</span></div>'
+      + '</div>'
+      + '<div class="verdict-note">Основание: ст. 389 ТК ЕАЭС. По заключению эксперта ЭКС ЦЭКТУ устанавливаются фактические признаки товара и принимается итоговое классификационное решение.</div>'
+      + '</div>';
   }
 
-  function updateProgress(stepId) {
-    var pct = Math.round((stepId / TOTAL) * 100);
-    document.getElementById('algoProgressFill').style.width  = pct + '%';
-    document.getElementById('algoProgressPct').textContent   = pct + '%';
-    document.getElementById('algoProgressLabel').textContent = 'Шаг ' + stepId + ' из ' + TOTAL;
-  }
+  html += verdict;
+  html += '<div class="algo3-final-actions">';
+  html += '<button class="algo3-reset-all-btn" onclick="algo3ResetAll()">↺ Начать заново</button>';
+  html += '</div>';
+  html += '</div>';
 
-  function updateBreadcrumbs() {
-    var bc = document.getElementById('algoBreadcrumbs');
-    if (!bc) return;
-    bc.innerHTML = history.map(function (h) {
-      var cls  = h.answer === 'yes' ? 'bc-yes' : 'bc-no';
-      var text = (h.answer === 'yes' ? '✓ ' : '✗ ') + 'Шаг ' + h.step;
-      return '<span class="breadcrumb-item ' + cls + '">' + text + '</span>';
-    }).join('');
-  }
+  document.getElementById('algoFinalContent').innerHTML = html;
+}
 
-  window.algoGo = function (targetStep) {
-    var node   = TREE[currentStep];
-    var answer = (node && node.yes === targetStep) ? 'yes' : 'no';
-    history.push({ step: currentStep, answer: answer });
-    currentStep = targetStep;
-    showStep(targetStep);
-  };
-
-  window.algoResult = function (resultKey) {
-    var node   = TREE[currentStep];
-    var answer = (node && node.no === resultKey) ? 'no' : 'yes';
-    history.push({ step: currentStep, answer: answer });
-    updateBreadcrumbs();
-    document.querySelectorAll('.algo-step2').forEach(function (el) { el.classList.remove('active'); el.style.display = ''; });
-    var data      = RESULTS[resultKey] || RESULTS['dispute'];
-    var caseLinks = data.cases.map(function (c) {
-      return '<a class="result2-case-link" href="' + c.anchor + '">📋 ' + c.text + '</a>';
-    }).join('');
-    document.getElementById('algoResultContent').innerHTML =
-      '<div class="result2-block ' + data.cls + '">' +
-        '<div class="result2-group">' + data.group + '</div>' +
-        '<div class="result2-code">'  + data.code  + '</div>' +
-        '<div class="result2-rate">'  + data.rate  + '</div>' +
-        '<div class="result2-opi">'   + data.opi   + '</div>' +
-        '<div class="result2-cases">' + caseLinks  + '</div>' +
-      '</div>';
-    document.getElementById('algoProgressFill').style.width  = '100%';
-    document.getElementById('algoProgressPct').textContent   = '100%';
-    document.getElementById('algoProgressLabel').textContent = 'Анализ завершён';
-    var rb = document.getElementById('algoResultBlock');
-    rb.style.display = 'block'; void rb.offsetWidth; rb.classList.add('active');
-  };
-
-  window.algoReset2 = function () {
-    currentStep = 1; history = [];
-    document.getElementById('algoProgressFill').style.width  = '17%';
-    document.getElementById('algoProgressPct').textContent   = '17%';
-    document.getElementById('algoProgressLabel').textContent = 'Шаг 1 из 6';
-    document.getElementById('algoBreadcrumbs').innerHTML     = '';
-    document.getElementById('algoResultBlock').style.display = 'none';
-    showStep(1);
-  };
-})();
+function algo3ResetAll() {
+  algo3.p1Code = null; algo3.p1Label = null;
+  algo3.p2Code = null; algo3.p2Label = null;
+  p1Reset(); p2Reset();
+  algo3GoStage(1);
+  document.getElementById('algoFinalContent').innerHTML = '';
+}
