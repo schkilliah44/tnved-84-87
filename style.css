@@ -1,27 +1,27 @@
 /* ===== ПЕРЕМЕННЫЕ ===== */
 :root {
-  --blue-dark:  #14532d;
-  --blue-main:  #16a34a;
-  --blue-mid:   #22c55e;
-  --blue-pale:  #dcfce7;
-  --blue-bg:    #f0fdf4;
-  --orange:     #ea580c;
-  --green:      #16a34a;
-  --red:        #dc2626;
-  --gray-900:   #111827;
-  --gray-700:   #374151;
-  --gray-500:   #6b7280;
-  --gray-400:   #9ca3af;
-  --gray-300:   #d1d5db;
-  --gray-200:   #e5e7eb;
-  --gray-100:   #f3f4f6;
-  --gray-50:    #f9fafb;
-  --white:      #ffffff;
-  --radius:     8px;
-  --radius-lg:  14px;
-  --shadow-sm:  0 1px 3px rgba(0,0,0,.08);
-  --shadow-md:  0 4px 16px rgba(0,0,0,.10);
-  --shadow-lg:  0 8px 32px rgba(0,0,0,.14);
+  --blue-dark: #14532d;
+  --blue-main: #16a34a;
+  --blue-mid: #22c55e;
+  --blue-pale: #dcfce7;
+  --blue-bg: #f0fdf4;
+  --orange: #ea580c;
+  --green: #16a34a;
+  --red: #dc2626;
+  --gray-900: #111827;
+  --gray-700: #374151;
+  --gray-500: #6b7280;
+  --gray-400: #9ca3af;
+  --gray-300: #d1d5db;
+  --gray-200: #e5e7eb;
+  --gray-100: #f3f4f6;
+  --gray-50: #f9fafb;
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.14);
   --transition: .2s ease;
 }
 
@@ -91,23 +91,39 @@ a:hover { text-decoration: underline; }
 
 /* ========== ТРЁХЭТАПНЫЙ АЛГОРИТМ ========== */
 .algo3-stages {
-  display: flex; align-items: center; justify-content: center;
-  gap: 0; margin-bottom: 2rem; flex-wrap: wrap; gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 .algo3-stage {
-  display: flex; align-items: center; gap: 0.6rem;
-  background: #f0f4f4; border: 2px solid #c8d8d8;
-  border-radius: 12px; padding: 0.7rem 1.2rem;
-  cursor: pointer; transition: all 0.2s; min-width: 160px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f0f4f4;
+  border: 2px solid #c8d8d8;
+  border-radius: 12px;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 160px;
 }
 .algo3-stage:hover { background: #e0eeee; }
 .algo3-stage.active { background: #01696f; border-color: #01696f; color: #fff; }
 .algo3-stage.done { background: #e8f7ef; border-color: #27ae60; color: #1e8449; }
 .algo3-stage-num {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: rgba(255,255,255,0.3); display: flex;
-  align-items: center; justify-content: center;
-  font-weight: 800; font-size: 1rem; flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
 }
 .algo3-stage.active .algo3-stage-num { background: rgba(255,255,255,0.25); }
 .algo3-stage.done .algo3-stage-num { background: #27ae60; color: #fff; }
@@ -115,10 +131,18 @@ a:hover { text-decoration: underline; }
 .algo3-stage-label small { font-weight: 400; opacity: 0.8; }
 .algo3-stage-arrow { font-size: 1.4rem; color: #aaa; padding: 0 0.3rem; }
 
-.algo3-panel { background: #fff; border-radius: 16px; border: 2px solid #e0e8e8; padding: 1.5rem; }
+.algo3-panel {
+  background: #fff;
+  border-radius: 16px;
+  border: 2px solid #e0e8e8;
+  padding: 1.5rem;
+}
 .algo3-panel-title {
-  font-size: 1.05rem; font-weight: 700; color: #0c4e54;
-  margin-bottom: 1.2rem; padding-bottom: 0.7rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0c4e54;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.7rem;
   border-bottom: 2px solid #e0f0f0;
 }
 .algo3-subtitle { font-weight: 400; font-size: 0.9rem; color: #666; }
@@ -128,14 +152,27 @@ a:hover { text-decoration: underline; }
 .algo3-result-block { display: none; }
 
 .algo3-q { font-size: 1rem; font-weight: 600; color: #1a1a2e; margin-bottom: 0.5rem; }
-.algo3-hint { font-size: 0.82rem; color: #666; margin-bottom: 1rem;
-  background: #f8fbfb; padding: 0.5rem 0.8rem; border-radius: 8px;
-  border-left: 3px solid #01696f; }
+.algo3-hint {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 1rem;
+  background: #f8fbfb;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border-left: 3px solid #01696f;
+}
 
 .algo3-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; }
 .algo3-btns-multi { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-.algo3-btn { padding: 0.55rem 1.2rem; border-radius: 8px; border: none;
-  cursor: pointer; font-weight: 600; font-size: 0.88rem; transition: all 0.15s; }
+.algo3-btn {
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: all 0.15s;
+}
 .btn-yes { background: #01696f; color: #fff; }
 .btn-yes:hover { background: #0c4e54; }
 .btn-no { background: #e74c3c; color: #fff; }
@@ -144,31 +181,66 @@ a:hover { text-decoration: underline; }
 .btn-opt:hover { background: #e0eeee; border-color: #01696f; }
 .btn-undef { background: #fdf2e9; color: #784212; border-color: #f0b27a; }
 
-.algo3-result-block { background: #f0f9f6; border-radius: 12px; padding: 1.2rem; border: 2px solid #27ae60; }
+.algo3-result-block {
+  background: #f0f9f6;
+  border-radius: 12px;
+  padding: 1.2rem;
+  border: 2px solid #27ae60;
+}
 .algo3-result-label { margin-bottom: 0.5rem; }
-.algo3-badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+.algo3-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
 .badge-gr87 { background: #e8f4fd; color: #1a5276; }
 .badge-gr84 { background: #e9f7ef; color: #1e8449; }
 .badge-undef { background: #fef9e7; color: #7d6608; }
 .algo3-code-val { font-weight: 700; font-size: 1rem; color: #0c4e54; }
 .algo3-code-note { font-size: 0.82rem; color: #666; }
 
-.algo3-next-btn { margin-top: 0.8rem; background: #01696f; color: #fff;
-  border: none; border-radius: 8px; padding: 0.6rem 1.5rem;
-  font-weight: 700; cursor: pointer; font-size: 0.9rem; margin-right: 0.5rem; }
+.algo3-next-btn {
+  margin-top: 0.8rem;
+  background: #01696f;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
 .algo3-next-btn:hover { background: #0c4e54; }
-.algo3-reset-btn { margin-top: 0.8rem; background: transparent; color: #888;
-  border: 1.5px solid #ccc; border-radius: 8px; padding: 0.6rem 1rem;
-  font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+.algo3-reset-btn {
+  margin-top: 0.8rem;
+  background: transparent;
+  color: #888;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
 .algo3-reset-btn:hover { color: #555; border-color: #999; }
 
 /* ========== ФИНАЛЬНАЯ СВЕРКА ========== */
-.algo3-final { }
+.algo3-final {}
 .algo3-final-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
 .algo3-final-box { flex: 1; min-width: 200px; border-radius: 12px; padding: 1rem 1.2rem; border: 2px solid; }
 .box-confirmed { background: #e9f7ef; border-color: #27ae60; }
 .box-undef { background: #fef9e7; border-color: #f0b27a; }
-.algo3-final-box-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.4rem; }
+.algo3-final-box-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin-bottom: 0.4rem;
+}
 .algo3-final-box-code { font-weight: 700; font-size: 0.92rem; color: #1a1a2e; }
 .algo3-final-vs { font-size: 1.8rem; color: #aaa; flex-shrink: 0; }
 
@@ -189,7 +261,14 @@ a:hover { text-decoration: underline; }
 .vcp-arrow { font-size: 1.5rem; color: #e74c3c; font-weight: 800; }
 
 .algo3-final-actions { margin-top: 1rem; }
-.algo3-reset-all-btn { background: #0c4e54; color: #fff; border: none;
-  border-radius: 8px; padding: 0.65rem 1.5rem; font-weight: 700;
-  cursor: pointer; font-size: 0.9rem; }
+.algo3-reset-all-btn {
+  background: #0c4e54;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
 .algo3-reset-all-btn:hover { background: #01696f; }
