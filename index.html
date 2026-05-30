@@ -5,6 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Классификационный справочник ТН ВЭД ЕАЭС: группы 84 и 87</title>
   <link rel="stylesheet" href="style.css" />
+
+<style>
+.npa-num { text-align: center; font-weight: 700; color: var(--primary, #01696f); font-size: 0.95rem; }
+.npa-badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+.npa-badge-intl { background: #e8f4f8; color: #1a5276; }
+.npa-badge-fed  { background: #fdf2e9; color: #784212; }
+.npa-badge-tr   { background: #e9f7ef; color: #1e8449; }
+.npa-badge-eec  { background: #f4ecf7; color: #6c3483; }
+.npa-badge-gost { background: #f2f3f4; color: #5d6d7e; }
+.npa-table-full a { color: var(--primary, #01696f); text-decoration: underline; text-underline-offset: 2px; }
+.npa-table-full a:hover { color: var(--primary-hover, #0c4e54); }
+.npa-col-gost { border-left: 3px solid #aab7b8 !important; }
+</style>
+
+<style>
+/* ========== ТРЁХЭТАПНЫЙ АЛГОРИТМ ========== */
+.algo3-stages {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-bottom: 2rem; flex-wrap: wrap; gap: 0.5rem;
+}
+.algo3-stage {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: #f0f4f4; border: 2px solid #c8d8d8;
+  border-radius: 12px; padding: 0.7rem 1.2rem;
+  cursor: pointer; transition: all 0.2s; min-width: 160px;
+}
+.algo3-stage:hover { background: #e0eeee; }
+.algo3-stage.active { background: #01696f; border-color: #01696f; color: #fff; }
+.algo3-stage.done { background: #e8f7ef; border-color: #27ae60; color: #1e8449; }
+.algo3-stage-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.3); display: flex;
+  align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; flex-shrink: 0;
+}
+.algo3-stage.active .algo3-stage-num { background: rgba(255,255,255,0.25); }
+.algo3-stage.done .algo3-stage-num { background: #27ae60; color: #fff; }
+.algo3-stage-label { font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
+.algo3-stage-label small { font-weight: 400; opacity: 0.8; }
+.algo3-stage-arrow { font-size: 1.4rem; color: #aaa; padding: 0 0.3rem; }
+
+.algo3-panel { background: #fff; border-radius: 16px; border: 2px solid #e0e8e8; padding: 1.5rem; }
+.algo3-panel-title {
+  font-size: 1.05rem; font-weight: 700; color: #0c4e54;
+  margin-bottom: 1.2rem; padding-bottom: 0.7rem;
+  border-bottom: 2px solid #e0f0f0;
+}
+.algo3-subtitle { font-weight: 400; font-size: 0.9rem; color: #666; }
+
+.algo3-step { display: none; padding: 1rem 0; }
+.algo3-step.active { display: block; }
+.algo3-result-block { display: none; }
+
+.algo3-q { font-size: 1rem; font-weight: 600; color: #1a1a2e; margin-bottom: 0.5rem; }
+.algo3-hint { font-size: 0.82rem; color: #666; margin-bottom: 1rem;
+  background: #f8fbfb; padding: 0.5rem 0.8rem; border-radius: 8px;
+  border-left: 3px solid #01696f; }
+
+.algo3-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+.algo3-btns-multi { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.algo3-btn { padding: 0.55rem 1.2rem; border-radius: 8px; border: none;
+  cursor: pointer; font-weight: 600; font-size: 0.88rem; transition: all 0.15s; }
+.btn-yes { background: #01696f; color: #fff; }
+.btn-yes:hover { background: #0c4e54; }
+.btn-no { background: #e74c3c; color: #fff; }
+.btn-no:hover { background: #c0392b; }
+.btn-opt { background: #f0f4f4; color: #0c4e54; border: 1.5px solid #c8d8d8; }
+.btn-opt:hover { background: #e0eeee; border-color: #01696f; }
+.btn-undef { background: #fdf2e9; color: #784212; border-color: #f0b27a; }
+
+.algo3-result-block { background: #f0f9f6; border-radius: 12px; padding: 1.2rem; border: 2px solid #27ae60; }
+.algo3-result-label { margin-bottom: 0.5rem; }
+.algo3-badge { display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+.badge-gr87 { background: #e8f4fd; color: #1a5276; }
+.badge-gr84 { background: #e9f7ef; color: #1e8449; }
+.badge-undef { background: #fef9e7; color: #7d6608; }
+.algo3-code-val { font-weight: 700; font-size: 1rem; color: #0c4e54; }
+.algo3-code-note { font-size: 0.82rem; color: #666; }
+
+.algo3-next-btn { margin-top: 0.8rem; background: #01696f; color: #fff;
+  border: none; border-radius: 8px; padding: 0.6rem 1.5rem;
+  font-weight: 700; cursor: pointer; font-size: 0.9rem; margin-right: 0.5rem; }
+.algo3-next-btn:hover { background: #0c4e54; }
+.algo3-reset-btn { margin-top: 0.8rem; background: transparent; color: #888;
+  border: 1.5px solid #ccc; border-radius: 8px; padding: 0.6rem 1rem;
+  font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+.algo3-reset-btn:hover { color: #555; border-color: #999; }
+
+/* ========== ФИНАЛЬНАЯ СВЕРКА ========== */
+.algo3-final { }
+.algo3-final-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.algo3-final-box { flex: 1; min-width: 200px; border-radius: 12px; padding: 1rem 1.2rem; border: 2px solid; }
+.box-confirmed { background: #e9f7ef; border-color: #27ae60; }
+.box-undef { background: #fef9e7; border-color: #f0b27a; }
+.algo3-final-box-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin-bottom: 0.4rem; }
+.algo3-final-box-code { font-weight: 700; font-size: 0.92rem; color: #1a1a2e; }
+.algo3-final-vs { font-size: 1.8rem; color: #aaa; flex-shrink: 0; }
+
+.algo3-verdict { border-radius: 14px; padding: 1.2rem 1.5rem; margin-bottom: 1rem; }
+.verdict-ok { background: #e9f7ef; border: 2px solid #27ae60; }
+.verdict-warn { background: #fef9e7; border: 2px solid #f39c12; }
+.verdict-expert { background: #fdedec; border: 2px solid #e74c3c; }
+.verdict-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.verdict-title { font-weight: 700; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.4rem; }
+.verdict-code { font-size: 1.05rem; font-weight: 800; color: #0c4e54; margin-bottom: 0.4rem; }
+.verdict-sep { color: #aaa; margin: 0 0.4rem; }
+.verdict-note { font-size: 0.83rem; color: #555; }
+
+.verdict-codes-pair { display: flex; align-items: center; gap: 0.8rem; margin: 0.6rem 0; flex-wrap: wrap; }
+.vcp-box { background: rgba(255,255,255,0.7); border-radius: 8px; padding: 0.5rem 0.8rem; flex: 1; min-width: 160px; }
+.vcp-label { font-size: 0.75rem; color: #888; display: block; }
+.vcp-code { font-weight: 700; font-size: 0.9rem; color: #1a1a2e; }
+.vcp-arrow { font-size: 1.5rem; color: #e74c3c; font-weight: 800; }
+
+.algo3-final-actions { margin-top: 1rem; }
+.algo3-reset-all-btn { background: #0c4e54; color: #fff; border: none;
+  border-radius: 8px; padding: 0.65rem 1.5rem; font-weight: 700;
+  cursor: pointer; font-size: 0.9rem; }
+.algo3-reset-all-btn:hover { background: #01696f; }
+</style>
 </head>
 <body>
 
@@ -26,7 +146,6 @@
         <li><a href="#algorithm"   class="nav-link">Алгоритм</a></li>
         <li><a href="#npa-table"   class="nav-link">Нормативная база</a></li>
         <li><a href="#cases"       class="nav-link">Судебная практика</a></li>
-        <li><a href="#npa"         class="nav-link">НПА</a></li>
         <li><a href="#codes"       class="nav-link">Коды ТН ВЭД</a></li>
       </ul>
     </nav>
@@ -61,119 +180,49 @@
     </div>
   </div>
 </section>
-
 <!-- ===== ИДЕНТИФИКАЦИОННЫЕ ПРИЗНАКИ ===== -->
 <section id="identifiers" class="section section-alt">
   <div class="container">
     <div class="section-header">
-      <h2>Идентификационные признаки</h2>
-      <p class="section-desc">Сравнительная характеристика ключевых признаков, разграничивающих группы 84 и 87 ТН ВЭД ЕАЭС. Основа — примечание 2 к разделу XVI, примечание 3б ТН ВЭД, ТР ТС 010/2011, ТР ТС 018/2011.</p>
+      <h2>Сравнительные признаки</h2>
+      <p class="section-desc">Критерии разграничения групп 84 и 87 ТН ВЭД ЕАЭС по степени важности.</p>
     </div>
     <div class="legend-row">
-      <span class="legend-item legend-84">● Группа 84</span>
-      <span class="legend-item legend-87">● Группа 87</span>
+      <span class="legend-item legend-84">Группа 84</span>
+      <span class="legend-item legend-87">Группа 87</span>
     </div>
     <div class="table-wrapper">
       <table class="compare-table">
         <thead>
           <tr>
-            <th class="col-sign">Признак</th>
+            <th class="col-sign">№</th>
             <th class="col-84">Группа 84<br><span class="th-sub">Подвижные машины</span></th>
             <th class="col-87">Группа 87<br><span class="th-sub">Транспортные средства</span></th>
             <th class="col-key">Ключевой критерий</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="sign-cell"><span class="sign-num">1</span>Основная функция</td>
-            <td class="cell-84">Технологические операции: копание, дробление, смешивание, подъём грузов, бурение, зарядка ВВ</td>
-            <td class="cell-87">Перевозка грузов или людей по дорогам общего пользования</td>
-            <td class="key-cell">Если перевозка вспомогательная, а основная — производственная → группа 84 (ОПИ 3б)</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="sign-cell"><span class="sign-num">2</span>Регуляторный документ</td>
-            <td class="cell-84">ТР ТС 010/2011 «О безопасности машин и оборудования»</td>
-            <td class="cell-87">ТР ТС 018/2011 «О безопасности колёсных транспортных средств»</td>
-            <td class="key-cell">Сертификат ТР ТС 010 = признак гр. 84; ОТТС по ТР ТС 018 = признак гр. 87</td>
-          </tr>
-          <tr>
-            <td class="sign-cell"><span class="sign-num">3</span>Скорость передвижения</td>
-            <td class="cell-84">До 30–40 км/ч; передвижение — технологическая необходимость</td>
-            <td class="cell-87">Более 40–50 км/ч; транспортный режим — основной режим эксплуатации</td>
-            <td class="key-cell">Косвенный признак, учитывается в совокупности с другими</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="sign-cell"><span class="sign-num">4</span>Регистрация</td>
-            <td class="cell-84">Регистрируется в Гостехнадзоре; оформляется ПСМ (паспорт самоходной машины)</td>
-            <td class="cell-87">Регистрируется в ГИБДД (МВД); оформляется ПТС (паспорт транспортного средства)</td>
-            <td class="key-cell">ПСМ → гр. 84; ПТС → гр. 87. Определяющий административный критерий</td>
-          </tr>
-          <tr>
-            <td class="sign-cell"><span class="sign-num">5</span>Конструкция шасси</td>
-            <td class="cell-84">Специализированное нестандартное шасси, неотъемлемо связанное с рабочим органом; возможно гусеничное</td>
-            <td class="cell-87">Унифицированное дорожное шасси (MAN, Scania, КАМАЗ); соответствует ГОСТ 22827-85</td>
-            <td class="key-cell">Стандартное дорожное шасси + надстройка = признак гр. 87 (дела AIMIX, YUGONG)</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="sign-cell"><span class="sign-num">6</span>Кузов / платформа</td>
-            <td class="cell-84">Отсутствует стандартный грузовой кузов; рабочий орган конструктивно неотделим</td>
-            <td class="cell-87">Наличие кузова, платформы или иного стандартного грузового пространства</td>
-            <td class="key-cell">Съёмная надстройка на стандартном шасси → признак гр. 87 (код 8705)</td>
-          </tr>
-          <tr>
-            <td class="sign-cell"><span class="sign-num">7</span>Примечание ТН ВЭД</td>
-            <td class="cell-84">Примечание 2 к разделу XVI: машина с несколькими функциями → основная функция</td>
-            <td class="cell-87">Примечание 3б ТН ВЭД: ТС со спецоборудованием → код 8705</td>
-            <td class="key-cell">При конкуренции разделов XVI и XVII приоритет определяется ОПИ 1, 3а, 3б</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="sign-cell"><span class="sign-num">8</span>Типовые товары</td>
-            <td class="cell-84">Экскаваторы (8429), горные машины (8430), бетоносмесители стационарные (8474), погрузчики (8427)</td>
-            <td class="cell-87">Автокраны (8705), автобетоносмесители (8705), самосвалы (8704), автобусы (8702)</td>
-            <td class="key-cell">Автобетоносмеситель на дорожном шасси = 8705; бетонный завод на спецшасси = 8474</td>
-          </tr>
-          <tr>
-            <td class="sign-cell"><span class="sign-num">9</span>Ставка пошлины</td>
-            <td class="cell-84 rate-low">0% (большинство позиций: 8429, 8430, 8474, 8427)</td>
-            <td class="cell-87 rate-high">15% (8705, 8704); 5–25% (прочие позиции 87)</td>
-            <td class="key-cell">Разница ставок — экономический мотив неверной классификации</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="sign-cell"><span class="sign-num">10</span>Документы</td>
-            <td class="cell-84">Сертификат ТР ТС 010/2011, ПСМ, техописание производителя, акт экспертизы</td>
-            <td class="cell-87">ОТТС, ПТС, сертификат ТР ТС 018/2011, свидетельство о безопасности конструкции</td>
-            <td class="key-cell">Противоречие между документами — основание для таможенной экспертизы (ст. 389 ТК ЕАЭС)</td>
-          </tr>
-          <tr>
-            <td class="sign-cell"><span class="sign-num">11</span>ОТТС</td>
-            <td class="cell-84">Не предусмотрено. Применяется сертификат или декларация по ТР ТС 010/2011</td>
-            <td class="cell-87">Обязательно по ТР ТС 018/2011. Выдаётся органом по сертификации</td>
-            <td class="key-cell">Наличие ОТТС — безусловный признак гр. 87; отсутствие ОТТС + сертификат ТР ТС 010 — признак гр. 84</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="sign-cell"><span class="sign-num">12</span>VIN-номер<br><small>(ГОСТ 34485-2018)</small></td>
-            <td class="cell-84">Как правило отсутствует. Машины до 25 км/ч освобождены от присвоения VIN по ТР ТС 018/2011</td>
-            <td class="cell-87">Обязателен для всех колёсных ТС по ТР ТС 018/2011 и ГОСТ 34485-2018</td>
-            <td class="key-cell">Наличие VIN = признак гр. 87. Отсутствие VIN при скорости &gt;25 км/ч — основание для проверки</td>
-          </tr>
-          <tr>
-            <td class="sign-cell"><span class="sign-num">13</span>ROPS / FOPS<br><small>(ISO 3471 / ISO 3449)</small></td>
-            <td class="cell-84">Обязательны для подземной и горнодобывающей техники по ТР ТС 010/2011</td>
-            <td class="cell-87">Не предусмотрены. Стандарты ROPS/FOPS на гр. 87 не распространяются</td>
-            <td class="key-cell">Сертифицированная конструкция ROPS/FOPS — признак гр. 84</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="sign-cell"><span class="sign-num">14</span>Применимые ОПИ</td>
-            <td class="cell-84">ОПИ 1 (текст позиции), ОПИ 3б (основная функция). Примечание 2 к разделу XVI</td>
-            <td class="cell-87">ОПИ 1, 3б (примечание 3б ТН ВЭД). Примечание 3б к разделу XVII</td>
-            <td class="key-cell">ОПИ 1 → ОПИ 3а → ОПИ 3б → ОПИ 6. Последовательность обязательна</td>
-          </tr>
+          <tr><td class="sign-cell"><span class="sign-num">1</span></td><td class="cell-84">Выполнение работы (рабочая)</td><td class="cell-87">Перемещение грузов / специальные операции на базе ТС (транспортная)</td><td class="key-cell">Ключевой признак: если работа важнее перевозки — группа 84</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">2</span></td><td class="cell-84">Специализированное, не соответствует ни одной категории ТС</td><td class="cell-87">Стандартное автомобильное (категории М/N по ТР ТС 018/2011)</td><td class="key-cell">Стандартное автомобильное шасси указывает на группу 87</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">3</span></td><td class="cell-84">Нет, конструктивно интегрирован</td><td class="cell-87">Да, надстройка крепится болтами к раме</td><td class="key-cell">Съёмная надстройка — признак группы 87</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">4</span></td><td class="cell-84">Сертификат ТР ТС 010/2011 + ПСМ</td><td class="cell-87">ОТТС + ПТС</td><td class="key-cell">ОТТС и ПТС — признаки группы 87; сертификат ТР ТС 010/2011 и ПСМ — группы 84</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">5</span></td><td class="cell-84">Гостехнадзор</td><td class="cell-87">ГИБДД</td><td class="key-cell">Гостехнадзор — группа 84; ГИБДД — группа 87</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">6</span></td><td class="cell-84">ОПИ 1, 3а, 3б; Примечание 2 к разделу XVI</td><td class="cell-87">ОПИ 1, 3а, 3б; Примечание 3б к разделу XVII</td><td class="key-cell">Приоритетный анализ идёт по ОПИ 1 → 3а → 3б → 6</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">7</span></td><td class="cell-84">До 50 км/ч</td><td class="cell-87">80–120 км/ч</td><td class="key-cell">Скорость свыше 50 км/ч — характерный признак группы 87</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">8</span></td><td class="cell-84">Рассчитана на остановку до 50 км/ч</td><td class="cell-87">Рассчитана на остановку до 80–100 км/ч, ABS обязательна</td><td class="key-cell">Более мощная тормозная система — признак группы 87</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">9</span></td><td class="cell-84">Stage IV (внедорожный стандарт)</td><td class="cell-87">Евро-5 / Евро-6</td><td class="key-cell">Дорожные экологические нормы указывают на группу 87</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">10</span></td><td class="cell-84">CAN ISO 11783 (контроль гидравлики)</td><td class="cell-87">OBD-II / OBD-16 (контроль движения)</td><td class="key-cell">Диагностика, ориентированная на движение, — признак группы 87</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">11</span></td><td class="cell-84">Рабочие прожекторы + оранжевый маяк</td><td class="cell-87">Полный комплект дорожного светового оборудования по Правилу № 48</td><td class="key-cell">Дорожное световое оборудование — признак группы 87</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">12</span></td><td class="cell-84">Моточасы (1–2 тыс. м/ч)</td><td class="cell-87">Километраж (100–200 тыс. км)</td><td class="key-cell">Моточасы — признак группы 84; километраж — группы 87</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">13</span></td><td class="cell-84">Нет</td><td class="cell-87">Обязателен для категорий N2/N3</td><td class="key-cell">Тахограф обязателен для группы 87</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">14</span></td><td class="cell-84">Отсутствует стандартный грузовой кузов; рабочий орган конструктивно неотделим</td><td class="cell-87">Наличие кузова, платформы или иного стандартного грузового пространства</td><td class="key-cell">Съёмная надстройка на стандартном шасси → признак группы 87 (код 8705)</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">15</span></td><td class="cell-84">Примечание 2 к разделу XVI: машина с несколькими функциями → основная функция</td><td class="cell-87">Примечание 3б ТН ВЭД: ТС со спецоборудованием → код 8705</td><td class="key-cell">При конкуренции разделов XVI и XVII приоритет определяется ОПИ 1, 3а, 3б</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">16</span></td><td class="cell-84">Экскаваторы (8429), горные машины (8430), бетоносмесители стационарные (8474), погрузчики (8427)</td><td class="cell-87">Автокраны (8705), автобетоносмесители (8705), самосвалы (8704), автобусы (8702)</td><td class="key-cell">Автобетоносмеситель на дорожном шасси = 8705; бетонный завод на спецшасси = 8474</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">17</span></td><td class="cell-84">0% (большинство позиций: 8429, 8430, 8474, 8427)</td><td class="cell-87">15% (8705, 8704); 5–25% (прочие позиции 87)</td><td class="key-cell">Разница ставок — экономический мотив неверной классификации</td></tr>
+          <tr class="row-alt"><td class="sign-cell"><span class="sign-num">18</span></td><td class="cell-84">Как правило отсутствует. Машины до 25 км/ч освобождены от присвоения VIN по ТР ТС 018/2011</td><td class="cell-87">Обязателен для всех колёсных ТС по ТР ТС 018/2011 и ГОСТ 34485-2018</td><td class="key-cell">Наличие VIN = признак группы 87. Отсутствие VIN при скорости &gt;25 км/ч — основание для проверки</td></tr>
+          <tr><td class="sign-cell"><span class="sign-num">19</span></td><td class="cell-84">Обязательны для подземной и горнодобывающей техники по ТР ТС 010/2011</td><td class="cell-87">Не предусмотрены. Стандарты ROPS/FOPS на гр. 87 не распространяются</td><td class="key-cell">Сертифицированная конструкция ROPS/FOPS — признак группы 84</td></tr>
         </tbody>
       </table>
-    </div>
-    <div class="info-block">
-      <div class="info-icon">ℹ</div>
-      <div>Источники: примечание 2 к разделу XVI ТН ВЭД ЕАЭС; примечание 3б ТН ВЭД; ОПИ 1, 3а, 3б, 6; рекомендация ЕЭК от 07.11.2017 № 21; письмо ФТС № 06-82/09332 от 19.02.2018; ТР ТС 010/2011 (решение КТС № 823); ТР ТС 018/2011 (решение КТС № 877).</div>
     </div>
   </div>
 </section>
@@ -183,167 +232,122 @@
   <div class="container">
     <div class="section-header">
       <h2>Алгоритм классификации</h2>
-      <p class="section-desc">Пошаговый инструмент для определения группы товара. Отвечайте на вопросы последовательно.</p>
+      <p class="section-desc">Трёхэтапная проверка: документальная (П1) → конструктивная (П2) → сверка результатов.</p>
     </div>
-    <div class="algo-shell">
-      <div class="algo-progress-wrap">
-        <div class="algo-progress-header">
-          <span class="algo-progress-label" id="algoProgressLabel">Шаг 1 из 6</span>
-          <span class="algo-progress-pct"   id="algoProgressPct">17%</span>
-        </div>
-        <div class="algo-progress-bar">
-          <div class="algo-progress-fill" id="algoProgressFill" style="width:17%"></div>
-        </div>
-        <div class="algo-breadcrumbs" id="algoBreadcrumbs"></div>
+
+    <div class="algo3-stages">
+      <div class="algo3-stage active" id="stageTab1" onclick="algo3GoStage(1)">
+        <div class="algo3-stage-num">1</div>
+        <div class="algo3-stage-label">Документальная<br><small>Проверка П1</small></div>
       </div>
-      <div class="algo-steps-wrap" id="algoStepsWrap">
-
-        <div class="algo-step2 active" id="algoStep1" data-step="1">
-          <div class="step2-num">Шаг 1</div>
-          <div class="step2-question">Имеется ли на товар <strong>ОТТС (одобрение типа ТС)</strong> по ТР ТС 018/2011?</div>
-          <div class="step2-hint">ОТТС — обязательный документ для колёсных транспортных средств гр. 87. Его наличие практически однозначно указывает на гр. 87.</div>
-          <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoGo(2)">✓ Да, есть ОТТС</button>
-            <button class="step2-btn btn-step-no"  onclick="algoGo(3)">✗ Нет ОТТС</button>
-          </div>
-        </div>
-
-        <div class="algo-step2" id="algoStep2" data-step="2">
-          <div class="step2-num">Шаг 2</div>
-          <div class="step2-question">Товар зарегистрирован в <strong>ГИБДД</strong> и имеет <strong>ПТС</strong>?</div>
-          <div class="step2-hint">Регистрация в ГИБДД и ПТС — административные признаки транспортного средства гр. 87. Регистрация в Гостехнадзоре и ПСМ — признак гр. 84.</div>
-          <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoResult('g87_8704_8705')">✓ Да, ГИБДД + ПТС</button>
-            <button class="step2-btn btn-step-no"  onclick="algoGo(3)">✗ Нет, Гостехнадзор / ПСМ</button>
-          </div>
-        </div>
-
-        <div class="algo-step2" id="algoStep3" data-step="3">
-          <div class="step2-num">Шаг 3</div>
-          <div class="step2-question">Имеется ли сертификат соответствия по <strong>ТР ТС 010/2011</strong> (машины и оборудование)?</div>
-          <div class="step2-hint">Сертификат по ТР ТС 010/2011 подтверждает принадлежность к машинам гр. 84. Горные машины (Normet, Himec, Charmec) проходят именно эту сертификацию.</div>
-          <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoGo(4)">✓ Да, есть сертификат ТР ТС 010</button>
-            <button class="step2-btn btn-step-no"  onclick="algoGo(5)">✗ Нет</button>
-          </div>
-        </div>
-
-        <div class="algo-step2" id="algoStep4" data-step="4">
-          <div class="step2-num">Шаг 4</div>
-          <div class="step2-question">Основная функция товара — <strong>горнопроходческие или тоннельные работы</strong>?</div>
-          <div class="step2-hint">Примеры: Normet Utilift, Himec, Charmec → код 8430 50 000 3, гр. 84, ставка 0%.</div>
-          <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoResult('g84_8430')">✓ Да, горная / тоннельная</button>
-            <button class="step2-btn btn-step-no"  onclick="algoGo(5)">✗ Нет</button>
-          </div>
-        </div>
-
-        <div class="algo-step2" id="algoStep5" data-step="5">
-          <div class="step2-num">Шаг 5</div>
-          <div class="step2-question">Основная функция — <strong>копание, бурение, дробление, погрузка, зарядка ВВ, земляные работы</strong>?</div>
-          <div class="step2-hint">ОПИ 3б: при многофункциональном назначении классификация по основной функции. Экскаваторы, погрузчики, буровые установки — признак гр. 84.</div>
-          <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoGo(6)">✓ Да, технологическая</button>
-            <button class="step2-btn btn-step-no"  onclick="algoResult('g87_8705_8704')">✗ Нет, перевозка</button>
-          </div>
-        </div>
-
-        <div class="algo-step2" id="algoStep6" data-step="6">
-          <div class="step2-num">Шаг 6</div>
-          <div class="step2-question">Товар установлен на <strong>специализированном нестандартном шасси</strong>, конструктивно единым с рабочим органом?</div>
-          <div class="step2-hint">Специальное шасси, неотделимое от рабочего органа → признак гр. 84. Унифицированное дорожное шасси MAN / Scania → признак гр. 87 (дела AIMIX, YUGONG).</div>
-          <div class="step2-btns">
-            <button class="step2-btn btn-step-yes" onclick="algoResult('g84_8474_8430')">✓ Да, спецшасси</button>
-            <button class="step2-btn btn-step-no"  onclick="algoResult('dispute')">✗ Нет, стандартное шасси</button>
-          </div>
-        </div>
-
-        <div class="algo-step2 algo-result2" id="algoResultBlock" style="display:none">
-          <div id="algoResultContent"></div>
-          <button class="step2-restart" onclick="algoReset2()">↺ Начать заново</button>
-        </div>
-
+      <div class="algo3-stage-arrow">→</div>
+      <div class="algo3-stage" id="stageTab2" onclick="algo3GoStage(2)">
+        <div class="algo3-stage-num">2</div>
+        <div class="algo3-stage-label">Конструктивная<br><small>Проверка П2</small></div>
+      </div>
+      <div class="algo3-stage-arrow">→</div>
+      <div class="algo3-stage" id="stageTab3" onclick="algo3GoStage(3)">
+        <div class="algo3-stage-num">3</div>
+        <div class="algo3-stage-label">Сверка<br><small>Итоговый код</small></div>
       </div>
     </div>
+
+    <div class="algo3-panel" id="algoPanel1">
+      <div class="algo3-panel-title">🔵 Проверка П1 — Документальная <span class="algo3-subtitle">(классификация по документам)</span></div>
+
+      <div class="algo3-step active" id="p1s1">
+        <div class="algo3-q">Имеется ли <strong>ОТТС или ПТС</strong>, оформленный по ТР ТС 018/2011?</div>
+        <div class="algo3-hint">ОТТС — одобрение типа транспортного средства; ПТС — паспорт транспортного средства. Оба выдаются только для колёсных ТС гр. 87.</div>
+        <div class="algo3-btns">
+          <button class="algo3-btn btn-yes" onclick="p1Go('p1s2')">✔ Да</button>
+          <button class="algo3-btn btn-no"  onclick="p1Go('p1s_noOTTS')">✘ Нет</button>
+        </div>
+      </div>
+
+      <div class="algo3-step" id="p1s_noOTTS">
+        <div class="algo3-q">Присвоен ли товару <strong>идентификационный номер VIN</strong> (ГОСТ Р 33990)?</div>
+        <div class="algo3-hint">VIN обязателен для всех колёсных ТС по ТР ТС 018/2011. Его наличие без ОТТС — признак неполного пакета документов.</div>
+        <div class="algo3-btns">
+          <button class="algo3-btn btn-yes" onclick="p1Go('p1s2')">✔ Да, VIN есть</button>
+          <button class="algo3-btn btn-no"  onclick="p1SetResult('undef', 'VIN отсутствует — документы недостоверны')">✘ Нет, VIN отсутствует</button>
+        </div>
+      </div>
+
+      <div class="algo3-step" id="p1s2">
+        <div class="algo3-q">Какое <strong>назначение</strong> указано в документах?</div>
+        <div class="algo3-hint">Смотрите технический паспорт, ОТТС, ПТС — графа «Категория» или «Назначение».</div>
+        <div class="algo3-btns algo3-btns-multi">
+          <button class="algo3-btn btn-opt" onclick="p1SetResult('8705', '8705 — Моторные ТС специального назначения')">🔧 Спецтехника</button>
+          <button class="algo3-btn btn-opt" onclick="p1SetResult('8702', '8702 — ТС для перевозки 10 и более человек')">🚌 Пассажиры ≥ 10</button>
+          <button class="algo3-btn btn-opt" onclick="p1SetResult('8703', '8703 — Автомобили легковые и прочие ТС для людей')">🚗 Пассажиры &lt; 10</button>
+          <button class="algo3-btn btn-opt" onclick="p1SetResult('8704', '8704 — Моторные ТС для перевозки грузов')">🚛 Грузовой</button>
+        </div>
+      </div>
+
+      <div class="algo3-step algo3-result-block" id="p1result" style="display:none">
+        <div class="algo3-result-label" id="p1resultLabel"></div>
+        <div class="algo3-result-code" id="p1resultCode"></div>
+        <button class="algo3-next-btn" onclick="algo3GoStage(2)">Перейти к Проверке П2 →</button>
+        <button class="algo3-reset-btn" onclick="p1Reset()">↺ Сбросить П1</button>
+      </div>
+    </div>
+
+    <div class="algo3-panel" id="algoPanel2" style="display:none">
+      <div class="algo3-panel-title">🟢 Проверка П2 — Конструктивная <span class="algo3-subtitle">(классификация по конструктивным признакам и функции)</span></div>
+
+      <div class="algo3-step active" id="p2s1">
+        <div class="algo3-q">Максимальная конструктивная скорость товара <strong>более 50 км/ч</strong>?</div>
+        <div class="algo3-hint">Скорость &gt; 50 км/ч — признак дорожного транспортного средства (гр. 87). Машины гр. 84, как правило, не превышают 30–40 км/ч.</div>
+        <div class="algo3-btns">
+          <button class="algo3-btn btn-yes" onclick="p2Go('p2s_highspeed')">✔ Да, более 50 км/ч</button>
+          <button class="algo3-btn btn-no"  onclick="p2Go('p2s_function')">✘ Нет, 50 км/ч и менее</button>
+        </div>
+      </div>
+
+      <div class="algo3-step" id="p2s_highspeed">
+        <div class="algo3-q">Основная функция высокоскоростного товара?</div>
+        <div class="algo3-hint">Скорость &gt; 50 км/ч характерна для ТС гр. 87. Уточните назначение по конструктивным признакам.</div>
+        <div class="algo3-btns algo3-btns-multi">
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8705', '8705 — Моторные ТС специального назначения')">🔧 Спецоборудование</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8704', '8704 — Моторные ТС для перевозки грузов')">🚛 Перевозка грузов</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8703', '8703 — Автомобили легковые и прочие ТС для людей')">🚗 Пассажиры &lt; 10</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8702', '8702 — ТС для перевозки 10 и более человек')">🚌 Пассажиры ≥ 10</button>
+        </div>
+      </div>
+
+      <div class="algo3-step" id="p2s_function">
+        <div class="algo3-q">Какова <strong>основная функция</strong> товара по конструкции?</div>
+        <div class="algo3-hint">Определяется по конструктивному назначению рабочего органа, неотделимого от шасси (ОПИ 3б, Примечание 2 к разделу XVI).</div>
+        <div class="algo3-btns algo3-btns-multi">
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8426', '8426 — Краны подъёмные, деррик-краны, стреловые, кабельные краны, подвижные фермы')">🏗 Подъём</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8427', '8427 — Вилочные погрузчики, прочие тележки, оснащённые подъёмником')">📦 Погрузка</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8429', '8429 — Бульдозеры, грейдеры, скреперы, экскаваторы, катки самоходные')">⛏ Земляные работы</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8430', '8430 — Машины для горных работ, бурения, проходки тоннелей')">⛰ Горная / бурение</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8474', '8474 — Дробилки, бетономесители, сортировочные установки на самоходном шасси')">🏭 Переработка материалов</button>
+          <button class="algo3-btn btn-opt" onclick="p2SetResult('8432', '8432/8436 — Сельскохозяйственные и специальные машины')">🌾 Сельское хозяйство</button>
+          <button class="algo3-btn btn-opt btn-undef" onclick="p2SetResult('undef', 'Функция не определена по конструктивным признакам')">❓ Ни одно из перечисленных</button>
+        </div>
+      </div>
+
+      <div class="algo3-step algo3-result-block" id="p2result" style="display:none">
+        <div class="algo3-result-label" id="p2resultLabel"></div>
+        <div class="algo3-result-code" id="p2resultCode"></div>
+        <button class="algo3-next-btn" onclick="algo3GoStage(3)">Перейти к Сверке →</button>
+        <button class="algo3-reset-btn" onclick="p2Reset()">↺ Сбросить П2</button>
+      </div>
+    </div>
+
+    <div class="algo3-panel" id="algoPanel3" style="display:none">
+      <div class="algo3-panel-title">🔶 Сверка результатов П1 и П2 — Итоговый код ТН ВЭД ЕАЭС</div>
+      <div id="algoFinalContent"></div>
+    </div>
+
     <div class="info-block" style="margin-top:2rem">
-      <div class="info-icon">📋</div>
-      <div>Алгоритм основан на ОПИ 1, 3а, 3б, примечании 2 к разделу XVI, ТР ТС 010/2011 и ТР ТС 018/2011. Данные судебной практики за 2019–2025 гг. <strong>При спорных случаях рекомендуется таможенная экспертиза.</strong></div>
+      <div class="info-icon">⚖</div>
+      <div>Алгоритм основан на ОПИ 1, 3а, 3б; Примечании 2 к разделу XVI; ТР ТС 010/2011 и ТР ТС 018/2011. Результат носит <strong>справочный характер.</strong></div>
     </div>
   </div>
 </section>
-
-<!-- ===== НОРМАТИВНАЯ БАЗА (ТАБЛИЦА) ===== -->
-<section id="npa-table" class="section section-alt">
-  <div class="container">
-    <div class="section-header">
-      <h2>Нормативная база</h2>
-      <p class="section-desc">Сводная таблица нормативно-правовых актов, регулирующих классификацию товаров групп 84 и 87 ТН ВЭД ЕАЭС.</p>
-    </div>
-    <div class="table-wrapper">
-      <table class="npa-table-full">
-        <thead>
-          <tr>
-            <th style="width:16%">НПА</th>
-            <th style="width:22%">Реквизиты</th>
-            <th style="width:30%">Предмет регулирования</th>
-            <th style="width:32%">Значение для групп 84/87</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="npa-name npa-col-main">ТК ЕАЭС</td>
-            <td>Договор о ЕАЭС от 29.05.2014 (ред. 11.04.2017)</td>
-            <td>Основа таможенного регулирования ЕАЭС</td>
-            <td>Ст. 20–23 — классификация товаров. Ст. 84–90 — таможенный контроль</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="npa-name npa-col-opi">ТН ВЭД ЕАЭС + ОПИ</td>
-            <td>Решение Совета ЕЭК от 14.09.2021 № 80</td>
-            <td>Товарная номенклатура и основные правила интерпретации (ОПИ 1–6)</td>
-            <td>ОПИ 1 — текст позиции; ОПИ 3б — основная функция при многоцелевом назначении; ОПИ 6 — субпозиции</td>
-          </tr>
-          <tr>
-            <td class="npa-name npa-col-tr84">ТР ТС 010/2011</td>
-            <td>Решение КТС от 18.10.2011 № 823</td>
-            <td>Безопасность машин и оборудования (группа 84)</td>
-            <td>Сертификат по данному ТР = признак гр. 84. Ключевой аргумент в деле Normet (2020)</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="npa-name npa-col-tr87">ТР ТС 018/2011</td>
-            <td>Решение КТС от 09.12.2011 № 877</td>
-            <td>Безопасность колёсных транспортных средств (группа 87)</td>
-            <td>ОТТС по данному ТР = признак гр. 87. Ключевой аргумент в делах AIMIX (2023) и YUGONG (2023)</td>
-          </tr>
-          <tr>
-            <td class="npa-name npa-col-tr84">ТР ТС 031/2012</td>
-            <td>Решение Совета ЕЭК от 18.10.2012 № 89</td>
-            <td>Безопасность сельскохозяйственных тракторов (часть техники гр. 84)</td>
-            <td>Разграничивает сельскохозяйственные машины гр. 84 от тягачей гр. 87 (8701)</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="npa-name npa-col-koap">КоАП РФ, ч. 2 ст. 16.2</td>
-            <td>ФЗ от 30.12.2001 № 195-ФЗ</td>
-            <td>Ответственность за недостоверное декларирование кода ТН ВЭД</td>
-            <td>Штраф 50–200% таможенной стоимости. YUGONG — штраф +80%; PAUS — 2 899 749 руб.</td>
-          </tr>
-          <tr>
-            <td class="npa-name npa-col-opi">Пояснения к ТН ВЭД ЕАЭС</td>
-            <td>Рекомендация Коллегии ЕЭК от 07.11.2017 № 21</td>
-            <td>Официальное толкование товарных позиций гр. 84 и 87</td>
-            <td>Ключевой документ для споров 8430 / 8705. Суды опираются на текст пояснений</td>
-          </tr>
-          <tr class="row-alt">
-            <td class="npa-name npa-col-koap">Решение Коллегии ЕЭК № 33</td>
-            <td>08.04.2025</td>
-            <td>Классификация PAUS UNI 50-3 LP — шахтного транспортёра породы</td>
-            <td>Прецедент: транспортёр = 8704 22 920 9 (гр. 87), а не 8430 50 000 3 (гр. 84)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
 <!-- ===== СУДЕБНАЯ ПРАКТИКА ===== -->
 <section id="cases" class="section">
   <div class="container">
@@ -496,32 +500,11 @@
   </div>
 </section>
 
-<!-- ===== НПА (КАРТОЧКИ) ===== -->
-<section id="npa" class="section section-alt">
-  <div class="container">
-    <div class="section-header">
-      <h2>Нормативно-правовые акты</h2>
-      <p class="section-desc">Ключевые НПА, регулирующие классификацию товаров групп 84 и 87 ТН ВЭД ЕАЭС.</p>
-    </div>
-    <div class="npa-grid">
-      <div class="npa-card npa-primary"><div class="npa-type">ТК ЕАЭС</div><div class="npa-title">Таможенный кодекс ЕАЭС</div><div class="npa-detail">Договор о ЕАЭС от 29.05.2014 (ред. 11.04.2017)</div><div class="npa-articles">Ст. 20–23 — классификация; ст. 84–90 — контроль</div></div>
-      <div class="npa-card npa-primary"><div class="npa-type">ОПИ ТН ВЭД</div><div class="npa-title">Основные правила интерпретации</div><div class="npa-detail">Решение ЕЭК № 80 от 14.09.2021</div><div class="npa-articles">ОПИ 1, 3а, 3б — основа спорных классификаций 84/87</div></div>
-      <div class="npa-card npa-tr"><div class="npa-type">ТР ТС 010/2011</div><div class="npa-title">О безопасности машин и оборудования</div><div class="npa-detail">Решение КТС № 823 от 18.10.2011</div><div class="npa-articles">Сертификат по ТР ТС 010 = признак гр. 84</div></div>
-      <div class="npa-card npa-tr"><div class="npa-type">ТР ТС 018/2011</div><div class="npa-title">О безопасности колёсных ТС</div><div class="npa-detail">Решение КТС № 877 от 09.12.2011</div><div class="npa-articles">ОТТС по ТР ТС 018 = признак гр. 87</div></div>
-      <div class="npa-card npa-gost"><div class="npa-type">ГОСТ 22827-85</div><div class="npa-title">Тягачи седельные. Технические условия</div><div class="npa-detail">М.: Стандартинформ, 2010</div><div class="npa-articles">Идентификация унифицированного дорожного шасси → признак гр. 87</div></div>
-      <div class="npa-card npa-gost"><div class="npa-type">ISO 8812-2014</div><div class="npa-title">Землеройное оборудование. Классификация</div><div class="npa-detail">М.: Стандартинформ, 2015</div><div class="npa-articles">Применяется при таможенной экспертизе горных машин</div></div>
-      <div class="npa-card npa-fts"><div class="npa-type">Письмо ФТС</div><div class="npa-title">Пояснения по классификации гр. 84</div><div class="npa-detail">№ 06-82/09332 от 19.02.2018</div><div class="npa-articles">Разъяснения при конкуренции гр. 84 и 87</div></div>
-      <div class="npa-card npa-fts"><div class="npa-type">Решение ЕЭК № 33</div><div class="npa-title">Классификация PAUS UNI 50-3 LP</div><div class="npa-detail">08.04.2025</div><div class="npa-articles">Прецедент: шахтный транспортёр = 8704 (гр. 87), не 8430 (гр. 84)</div></div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== КОДЫ ТН ВЭД ===== -->
 <section id="codes" class="section">
   <div class="container">
     <div class="section-header">
       <h2>Коды ТН ВЭД: конкурирующие позиции</h2>
-      <p class="section-desc">Наиболее часто конкурирующие коды групп 84 и 87 с указанием ставок пошлин и итоговой таможенной нагрузки.</p>
     </div>
     <div class="filter-row">
       <button class="filter-btn active" onclick="filterCodes('all',this)">Все</button>
@@ -567,8 +550,8 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-info">
-      <div class="footer-title">Классификационный справочник ТН ВЭД ЕАЭС</div>
-      <div class="footer-sub">Группы 84 и 87 · Для таможенных специалистов</div>
+      <div class="footer-title">Справочник товаров: подвижные машины 84 группы ТН ВЭД ЕАЭС и транспортные средства 87 группы ТН ВЭД ЕАЭС</div>
+      
       <div class="footer-note">Справочник носит информационный характер. Для официальных решений обращайтесь в таможенные органы.</div>
     </div>
     <div class="footer-refs">
