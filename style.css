@@ -862,50 +862,105 @@ a:hover { text-decoration: underline; }
   border-left: 4px solid transparent;
 }
 
-.npa-table tbody tr:nth-child(1) td:first-child {
-  border-left-color: #14532d;
-}
+.npa-table tbody tr:nth-child(1) td:first-child { border-left-color: #14532d; }
+.npa-table tbody tr:nth-child(2) td:first-child { border-left-color: #7c3aed; }
+.npa-table tbody tr:nth-child(3) td:first-child { border-left-color: #16a34a; }
+.npa-table tbody tr:nth-child(4) td:first-child { border-left-color: #ea580c; }
+.npa-table tbody tr:nth-child(5) td:first-child { border-left-color: #16a34a; }
+.npa-table tbody tr:nth-child(6) td:first-child { border-left-color: #dc2626; }
+.npa-table tbody tr:nth-child(7) td:first-child { border-left-color: #7c3aed; }
+.npa-table tbody tr:nth-child(8) td:first-child { border-left-color: #dc2626; }
+.npa-table tbody tr:nth-child(9) td:first-child { border-left-color: #0f766e; }
+.npa-table tbody tr:nth-child(10) td:first-child { border-left-color: #0f766e; }
 
-.npa-table tbody tr:nth-child(2) td:first-child {
-  border-left-color: #7c3aed;
-}
-
-.npa-table tbody tr:nth-child(3) td:first-child {
-  border-left-color: #16a34a;
-}
-
-.npa-table tbody tr:nth-child(4) td:first-child {
-  border-left-color: #ea580c;
-}
-
-.npa-table tbody tr:nth-child(5) td:first-child {
-  border-left-color: #16a34a;
-}
-
-.npa-table tbody tr:nth-child(6) td:first-child {
-  border-left-color: #dc2626;
-}
-
-.npa-table tbody tr:nth-child(7) td:first-child {
-  border-left-color: #7c3aed;
-}
-
-.npa-table tbody tr:nth-child(8) td:first-child {
-  border-left-color: #dc2626;
-}
-
-.npa-table tbody tr:nth-child(9) td:first-child {
-  border-left-color: #0f766e;
-}
-
-.npa-table tbody tr:nth-child(10) td:first-child {
-  border-left-color: #0f766e;
-}
 .npa-table .npa-plus {
   color: #7c3aed;
   font-weight: 900;
   display: inline-block;
-  margin: 0 .2rem;
+  margin: 0 0.2rem;
+}
+
+/* ===== МОБИЛЬНЫЕ КАРТОЧКИ NPA ===== */
+.npa-cards {
+  display: none;
+}
+
+.npa-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.npa-card-head {
+  padding: 0;
+}
+
+.npa-card-head a {
+  display: block;
+  padding: 0.95rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.npa-card-head a:hover,
+.npa-card-head a:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.npa-card-body {
+  padding: 0.95rem 1rem 1rem;
+}
+
+.npa-card-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.npa-card-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.npa-card-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.npa-card-value {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #1f2937;
+}
+
+.npa-card-main .npa-card-head { background: #14532d; }
+.npa-card-opi .npa-card-head { background: #7c3aed; }
+.npa-card-tr84 .npa-card-head { background: #16a34a; }
+.npa-card-tr87 .npa-card-head { background: #ea580c; }
+.npa-card-koap .npa-card-head { background: #dc2626; }
+.npa-card-gost .npa-card-head { background: #0f766e; }
+
+@media (max-width: 640px) {
+  .npa-table-wrap {
+    display: none;
+  }
+
+  .npa-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
 }
 /* ===== СУДЕБНАЯ ПРАКТИКА ===== */
 .cases-filter-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -1416,92 +1471,6 @@ a:hover { text-decoration: underline; }
 
   #codes .rate-value {
     font-size: 1.7rem;
-  }
-}
-
-.npa-cards {
-  display: none;
-}
-
-@media (max-width: 640px) {
-  .npa-table-wrap {
-    display: none;
-  }
-
-  .npa-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-
-  .npa-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-  }
-
-  .npa-card-head {
-    padding: 0.95rem 1rem;
-    font-size: 1rem;
-    font-weight: 900;
-    color: #ffffff;
-  }
-
-  .npa-card-body {
-    padding: 0.95rem 1rem 1rem;
-  }
-
-  .npa-card-row {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 0.7rem 0;
-    border-bottom: 1px solid #f1f5f9;
-  }
-
-  .npa-card-row:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .npa-card-label {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #6b7280;
-  }
-
-  .npa-card-value {
-    font-size: 0.92rem;
-    line-height: 1.5;
-    color: #1f2937;
-  }
-
-  .npa-card-main .npa-card-head {
-    background: #14532d;
-  }
-
-  .npa-card-opi .npa-card-head {
-    background: #7c3aed;
-  }
-
-  .npa-card-tr84 .npa-card-head {
-    background: #16a34a;
-  }
-
-  .npa-card-tr87 .npa-card-head {
-    background: #ea580c;
-  }
-
-  .npa-card-koap .npa-card-head {
-    background: #dc2626;
-  }
-
-  .npa-card-gost .npa-card-head {
-    background: #0f766e;
   }
 }
 
