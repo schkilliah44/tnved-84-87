@@ -1518,4 +1518,43 @@ a:hover { text-decoration: underline; }
   .sign-cell {
     background: linear-gradient(180deg, #ecfdf5 0%, #f8fafc 100%) !important;
   }
+  /* ===== FIX: кликабельность карточек НПА на мобильных ===== */
+.npa-card {
+  position: relative;
+  overflow: visible;
+}
+
+.npa-card-head {
+  position: relative;
+  z-index: 3;
+}
+
+.npa-card-head a {
+  display: block;
+  position: relative;
+  z-index: 4;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.18);
+}
+
+.npa-card-body {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .npa-cards {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.9rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .npa-card-head a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
 }
